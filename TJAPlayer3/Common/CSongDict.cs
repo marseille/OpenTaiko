@@ -186,7 +186,7 @@ namespace TJAPlayer3
         public static List<C曲リストノード> tFetchFavoriteFolder(C曲リストノード parent)
         {
             List<C曲リストノード> childList = new List<C曲リストノード>();
-
+            
             foreach (string id in TJAPlayer3.Favorites.data.favorites[TJAPlayer3.SaveFile])
             {
                 var node = tReadaptChildNote(parent, tGetNodeFromID(id));
@@ -196,9 +196,10 @@ namespace TJAPlayer3
                 }
                     
             }
-
+            C曲リストノード.C曲リストノードComparer a = new C曲リストノード.C曲リストノードComparer();          
+            childList.Sort(a);
             // Generate back buttons
-            
+
             string favPath = "./" + parent.strタイトル + "/";
 
             tReinsertBackButtons(parent, childList, favPath);
