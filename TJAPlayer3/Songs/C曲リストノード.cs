@@ -4,9 +4,33 @@ using System.Drawing;
 
 namespace TJAPlayer3
 {
+
 	[Serializable]
 	internal class C曲リストノード
-	{
+    {
+        public class C曲リストノードComparer : IComparer<C曲リストノード>
+		{
+			public int Compare(C曲リストノード one, C曲リストノード two)
+			{
+				if (one.strタイトル == null) return 1;
+				if (two.strタイトル == null) return -1;
+
+				if (one.strタイトル.CompareTo(two.strタイトル) < 0)
+				{
+					return -1;
+				}
+				else if (one.strタイトル.CompareTo(two.strタイトル) > 0)
+				{
+					return 1;
+
+					List<String> a = new System.Collections.Generic.List<string>();
+				}
+				else
+				{
+					return 0;
+				}
+			}
+		}
 		// プロパティ
 
 		public Eノード種別 eノード種別 = Eノード種別.UNKNOWN;
