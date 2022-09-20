@@ -19,12 +19,12 @@ namespace TJAPlayer3
 
         #region [Auxiliary methods]
 
-        public void tToggleFavorite(string chartID)
+        public void tToggleFavorite(string chartID, int player)
         {
             if (tIsFavorite(chartID))
-                data.favorites[TJAPlayer3.SaveFile].Remove(chartID);
+                data.favorites[player].Remove(chartID);
             else
-                data.favorites[TJAPlayer3.SaveFile].Add(chartID);
+                data.favorites[player].Add(chartID);
 
             tSaveFile();
         }
