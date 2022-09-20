@@ -31,6 +31,9 @@ namespace TJAPlayer3
 		public static readonly string AppDisplayThreePartVersion = GetAppDisplayThreePartVersion();
 		public static readonly string AppNumericThreePartVersion = GetAppNumericThreePartVersion();
 
+		public const int PLAYER_ONE = 0;
+		public const int PLAYER_TWO = 1;
+
 		private static string GetAppDisplayThreePartVersion()
 		{
 			return $"v{GetAppNumericThreePartVersion()}";
