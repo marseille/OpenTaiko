@@ -881,6 +881,10 @@ namespace TJAPlayer3
                                                         {
                                                             this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchFavoriteFolder(this.act曲リスト.r現在選択中の曲);
                                                         }
+                                                        else if (this.act曲リスト.r現在選択中の曲.strジャンル == "FavoriteP2")
+                                                        {
+                                                            this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchFavoriteFolderP2(this.act曲リスト.r現在選択中の曲);
+                                                        }
                                                         else if (this.act曲リスト.r現在選択中の曲.strジャンル == "最近遊んだ曲")
                                                         {
                                                             this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchRecentlyPlayedSongsFolder(this.act曲リスト.r現在選択中の曲);
@@ -954,7 +958,16 @@ namespace TJAPlayer3
                                         if (csu != null)
                                         {
                                             TJAPlayer3.Skin.sound決定音.t再生する();
-                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id);
+                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.PLAYER_ONE);
+                                        }
+                                    } else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.RightControl))
+                                    {
+                                        CSongUniqueID csu = this.r現在選択中の曲.uniqueId;
+
+                                        if (csu != null)
+                                        {
+                                            TJAPlayer3.Skin.sound決定音.t再生する();
+                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.PLAYER_TWO);
                                         }
                                     }
                                 }
