@@ -229,6 +229,7 @@ namespace TJAPlayer3
             SongSelect_BoardNumber = TxC(SONGSELECT + @"BoardNumber.png");
 
             SongSelect_Favorite = TxC(SONGSELECT + @"Favorite.png");
+            SongSelect_FavoriteP2 = TxC(SONGSELECT + @"FavoriteP2.png");
             SongSelect_High_Score = TxC(SONGSELECT + @"High_Score.png");
 
             SongSelect_Level_Icons = TxC(SONGSELECT + @"Level_Icons.png");
@@ -1729,6 +1730,7 @@ namespace TJAPlayer3
             SongSelect_BoardNumber,
 
             SongSelect_Favorite,
+            SongSelect_FavoriteP2,
             SongSelect_High_Score,
 
             SongSelect_Level_Icons,
