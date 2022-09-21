@@ -23,13 +23,10 @@ namespace TJAPlayer3
         {
             if (tIsFavorite(chartID, player))
             {
-                TJAPlayer3.Skin.sound取消音.t再生する();
                 data.favorites[player].Remove(chartID);
-
             }
             else
             {
-                TJAPlayer3.Skin.sound決定音.t再生する();
                 data.favorites[player].Add(chartID);
             }
             tSaveFile();

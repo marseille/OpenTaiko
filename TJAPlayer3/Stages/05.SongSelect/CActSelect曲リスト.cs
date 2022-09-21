@@ -2709,6 +2709,35 @@ namespace TJAPlayer3
 
 		public void displayFavoriteStatus(int x, int y, CSongUniqueID csu, float _resize)
         {
+			bool favp1 = TJAPlayer3.Favorites.tIsFavorite(csu.data.id, TJAPlayer3.PLAYER_ONE);
+			bool favp2 = TJAPlayer3.Favorites.tIsFavorite(csu.data.id, TJAPlayer3.PLAYER_TWO);
+
+			if(csu != null && favp1 || favp2)
+            {
+                if (favp1 && favp2)
+                {
+					TJAPlayer3.Tx.SongSelect_Favorite.vc拡大縮小倍率.X = _resize;
+					TJAPlayer3.Tx.SongSelect_Favorite.vc拡大縮小倍率.Y = _resize;
+					TJAPlayer3.Tx.SongSelect_Favorite.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, x, y);
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.vc拡大縮小倍率.X = _resize;
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.vc拡大縮小倍率.Y = _resize;
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, x+30, y);
+				} 
+				else if (favp1)
+                {
+					TJAPlayer3.Tx.SongSelect_Favorite.vc拡大縮小倍率.X = _resize;
+					TJAPlayer3.Tx.SongSelect_Favorite.vc拡大縮小倍率.Y = _resize;
+					TJAPlayer3.Tx.SongSelect_Favorite.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, x, y);
+				} 
+				else if (favp2)
+                {					
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.vc拡大縮小倍率.X = _resize;
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.vc拡大縮小倍率.Y = _resize;
+					TJAPlayer3.Tx.SongSelect_FavoriteP2.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, x, y);
+				}
+            }
+
+			/*
 			if (csu != null
 				&& TJAPlayer3.Tx.SongSelect_Favorite != null
 				&& TJAPlayer3.Favorites.tIsFavorite(csu.data.id))
@@ -2717,6 +2746,7 @@ namespace TJAPlayer3
 				TJAPlayer3.Tx.SongSelect_Favorite.vc拡大縮小倍率.Y = _resize;
 				TJAPlayer3.Tx.SongSelect_Favorite.t2D拡大率考慮中央基準描画(TJAPlayer3.app.Device, x, y);
 			}
+			*/
         }
 
 		public int nStrジャンルtoNum(string strジャンル)

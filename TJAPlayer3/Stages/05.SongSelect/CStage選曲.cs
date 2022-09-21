@@ -956,7 +956,8 @@ namespace TJAPlayer3
                                         CSongUniqueID csu = this.r現在選択中の曲.uniqueId;
 
                                         if (csu != null)
-                                        {                                                                                        
+                                        {
+                                            TJAPlayer3.Skin.sound決定音.t再生する();
                                             TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.GetActualPlayer(0));
                                         }
                                     } else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.NumberPad6))
@@ -964,7 +965,8 @@ namespace TJAPlayer3
                                         CSongUniqueID csu = this.r現在選択中の曲.uniqueId;
 
                                         if (csu != null)
-                                        {                                            
+                                        {
+                                            TJAPlayer3.Skin.sound決定音.t再生する();
                                             TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.GetActualPlayer(1));
                                         }
                                     }
