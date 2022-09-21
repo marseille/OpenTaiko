@@ -21,17 +21,22 @@ namespace TJAPlayer3
 
         public void tToggleFavorite(string chartID, int player)
         {
-            if (tIsFavorite(chartID))
+            if (tIsFavorite(chartID, player))
+            {
+                TJAPlayer3.Skin.sound取消音.t再生する();
                 data.favorites[player].Remove(chartID);
+            }
             else
+            {
+                TJAPlayer3.Skin.sound決定音.t再生する();
                 data.favorites[player].Add(chartID);
-
+            }
             tSaveFile();
         }
 
-        public bool tIsFavorite(string chartID)
+        public bool tIsFavorite(string chartID, int player = 0)
         {
-            return (data.favorites[TJAPlayer3.SaveFile].Contains(chartID));
+            return data.favorites[player].Contains(chartID);
         }
         
 

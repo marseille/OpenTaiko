@@ -183,11 +183,11 @@ namespace TJAPlayer3
         }
 
         // Generate the favorite folder content
-        public static List<C曲リストノード> tFetchFavoriteFolder(C曲リストノード parent)
+        public static List<C曲リストノード> tFetchFavoriteFolder(C曲リストノード parent, int player)
         {
             List<C曲リストノード> childList = new List<C曲リストノード>();
             
-            foreach (string id in TJAPlayer3.Favorites.data.favorites[TJAPlayer3.PLAYER_ONE])
+            foreach (string id in TJAPlayer3.Favorites.data.favorites[player])
             {
                 var node = tReadaptChildNote(parent, tGetNodeFromID(id));
                 if (node != null)
@@ -197,7 +197,7 @@ namespace TJAPlayer3
             }
 
             // Generate back buttons
-            
+
             string favPath = "./" + parent.strタイトル + "/";
 
             tReinsertBackButtons(parent, childList, favPath);
