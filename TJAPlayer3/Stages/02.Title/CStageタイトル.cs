@@ -45,20 +45,9 @@ namespace TJAPlayer3
 					0,
 					1,
 					2,
-					10,
 					5,
-					3,
-					9,
-					8,
 					6,
-					7,
-
-					// -- Debug
-					/*
-					11,
-					12,
-					13,
-					*/
+					7				
 				};
 
 				usedMenusCount = usedMenus.Length;
