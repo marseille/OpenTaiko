@@ -879,7 +879,11 @@ namespace TJAPlayer3
 
                                                         if (this.act曲リスト.r現在選択中の曲.strジャンル == "Favorite")
                                                         {
-                                                            this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchFavoriteFolder(this.act曲リスト.r現在選択中の曲);
+                                                            this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchFavoriteFolder(this.act曲リスト.r現在選択中の曲, TJAPlayer3.GetActualPlayer(0));
+                                                        }
+                                                        else if (this.act曲リスト.r現在選択中の曲.strジャンル == "FavoriteP2")
+                                                        {
+                                                            this.act曲リスト.r現在選択中の曲.list子リスト = CSongDict.tFetchFavoriteFolder(this.act曲リスト.r現在選択中の曲, TJAPlayer3.GetActualPlayer(1));
                                                         }
                                                         else if (this.act曲リスト.r現在選択中の曲.strジャンル == "FavoriteP2")
                                                         {
@@ -956,18 +960,16 @@ namespace TJAPlayer3
                                         CSongUniqueID csu = this.r現在選択中の曲.uniqueId;
 
                                         if (csu != null)
-                                        {
-                                            TJAPlayer3.Skin.sound決定音.t再生する();
-                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.PLAYER_ONE);
+                                        {                                                                                        
+                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.GetActualPlayer(0));
                                         }
                                     } else if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.RightControl))
                                     {
                                         CSongUniqueID csu = this.r現在選択中の曲.uniqueId;
 
                                         if (csu != null)
-                                        {
-                                            TJAPlayer3.Skin.sound決定音.t再生する();
-                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.PLAYER_TWO);
+                                        {                                            
+                                            TJAPlayer3.Favorites.tToggleFavorite(csu.data.id, TJAPlayer3.GetActualPlayer(1));
                                         }
                                     }
                                 }
