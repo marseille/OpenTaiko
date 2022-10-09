@@ -2551,7 +2551,8 @@ namespace TJAPlayer3
 			TJAPlayer3.Tx.SongSelect_Bar_Genre_Back.Opacity = opct;
 			TJAPlayer3.Tx.SongSelect_Bar_Genre_Random.Opacity = opct;
 			TJAPlayer3.Tx.SongSelect_Bar_Genre_Overlay.Opacity = opct;
-			TJAPlayer3.Tx.SongSelect_Favorite.Opacity = opct; 
+			TJAPlayer3.Tx.SongSelect_Favorite.Opacity = opct;
+			TJAPlayer3.Tx.SongSelect_FavoriteP2.Opacity = opct;
 			TJAPlayer3.Tx.TowerResult_ScoreRankEffect.Opacity = opct;
 			TJAPlayer3.Tx.DanResult_Rank.Opacity = opct;
 
