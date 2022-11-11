@@ -1314,6 +1314,10 @@ namespace TJAPlayer3
         private string[] dlmtEnter = { "\n" };
         private string[] dlmtCOURSE = { "COURSE:" };
 
+        private readonly string langTITLE = "TITLE" + CLangManager.fetchLang().ToUpper();
+        private readonly string langSUBTITLE = "SUBTITLE" + CLangManager.fetchLang().ToUpper();
+        private bool titleIsLocalized = false;
+
         private int nスクロール方向 = 0;
         //2015.09.18 kairera0467
         //バタフライスライドみたいなアレをやりたいがために実装。
@@ -4674,7 +4678,7 @@ namespace TJAPlayer3
         /// <param name="InputText"></param>
         private void t難易度別ヘッダ(string InputText)
         {
-            if (TJAPlayer3.actEnumSongs.b活性化してない)
+            if (TJAPlayer3.actEnumSongs != null && TJAPlayer3.actEnumSongs.b活性化してない)
             {
                 if (InputText.Equals("#HBSCROLL") && TJAPlayer3.ConfigIni.bスクロールモードを上書き == false)
                 {
@@ -4994,22 +4998,30 @@ namespace TJAPlayer3
             }
 
             //パラメータを分別、そこから割り当てていきます。
-            if (strCommandName.Equals("TITLE"))
+            if (strCommandName.Equals("TITLE") && !titleIsLocalized) // Do not grab default TITLE if localized title is used first.
             {
-                //this.TITLE = strCommandParam;
                 var subTitle = "";
                 for (int i = 0; i < strArray.Length; i++)
                 {
                     subTitle += strArray[i];
                 }
                 this.TITLE = subTitle.Substring(5);
-                //tbTitle.Text = strCommandParam;
             }
-            if (strCommandName.Equals("SUBTITLE"))
+            else if (strCommandName.Equals(langTITLE))
+            {
+                var subTitle = "";
+                for (int i = 0; i < strArray.Length; i++)
+                {
+                    subTitle += strArray[i];
+                }
+                this.TITLE = subTitle.Substring(7);
+                this.titleIsLocalized = true;
+                this.SUBTITLE = ""; // Wipe default SUBTITLE if picked up before localized subtitle.
+            }
+            if (strCommandName.Equals("SUBTITLE") && !titleIsLocalized) // Do not grab default SUBTITLE if localized title is used first. Avoids localization conflicts. (i.e. English title w/ default Japanese subtitle)
             {
                 if (strCommandParam.StartsWith("--"))
                 {
-                    //this.SUBTITLE = strCommandParam.Remove( 0, 2 );
                     var subTitle = "";
                     for (int i = 0; i < strArray.Length; i++)
                     {
@@ -5019,8 +5031,6 @@ namespace TJAPlayer3
                 }
                 else if (strCommandParam.StartsWith("++"))
                 {
-                    //    //this.TITLE += strCommandParam.Remove( 0, 2 ); //このままだと選曲画面の表示がうまくいかない。
-                    //this.SUBTITLE = strCommandParam.Remove( 0, 2 );
                     var subTitle = "";
                     for (int i = 0; i < strArray.Length; i++)
                     {
@@ -5028,6 +5038,24 @@ namespace TJAPlayer3
                     }
                     this.SUBTITLE = subTitle.Substring(10);
                 }
+                else
+                {
+                    var subTitle = "";
+                    for (int i = 0; i < strArray.Length; i++)
+                    {
+                        subTitle += strArray[i];
+                    }
+                    this.SUBTITLE = subTitle.Substring(8);
+                }
+            }
+            else if (strCommandName.Equals(langSUBTITLE))
+            {
+                var subTitle = "";
+                for (int i = 0; i < strArray.Length; i++)
+                {
+                    subTitle += strArray[i];
+                }
+                this.SUBTITLE = subTitle.Substring(10);
             }
             else if (strCommandName.Equals("LEVEL"))
             {

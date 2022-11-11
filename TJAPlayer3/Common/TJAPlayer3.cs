@@ -2440,7 +2440,7 @@ for (int i = 0; i < 3; i++) {
 			try
 			{
 				ESoundDeviceType soundDeviceType;
-				switch (Environment.Is64BitProcess ? TJAPlayer3.ConfigIni.nSoundDeviceType + 1 :
+				switch (Environment.Is64BitProcess ? Math.Max(1, TJAPlayer3.ConfigIni.nSoundDeviceType) :
 					TJAPlayer3.ConfigIni.nSoundDeviceType)
 				{
 					case 0:
@@ -3105,8 +3105,9 @@ for (int i = 0; i < 3; i++) {
 
 			base.GraphicsDeviceManager.ChangeDevice(base.GraphicsDeviceManager.CurrentSettings);
 
-			base.Window.ClientSize = new Size(currentClientSize.Width, currentClientSize.Height);
-			base.Window.WindowState = state;
+			//base.Window.ClientSize = new Size(currentClientSize.Width, currentClientSize.Height);
+            base.Window.ClientSize = new Size(nWidth, nHeight);
+            base.Window.WindowState = state;
 		}
 
 		public void RefleshSkin()
