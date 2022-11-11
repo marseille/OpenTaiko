@@ -337,6 +337,48 @@ namespace TJAPlayer3
 							ini[0].stセクション[0].nクリア[0] = Math.Max(ini[0].stセクション[0].nクリア[0], clearValue);
 							ini[0].stセクション[0].nハイスコア[0] = Math.Max(ini[0].stセクション[0].nハイスコア[0], (int)TJAPlayer3.stage演奏ドラム画面.actScore.Get(E楽器パート.DRUMS, 0)); ;
 
+                            #region [ Update Dan Dojo exam results ]
+                            for (int i = 0; i < TJAPlayer3.stage選曲.r確定された曲.DanSongs.Count; i++)
+                            {
+								for (int j = 0; j < TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C.Length; j++)
+                                {
+									if (TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C[j] != null && TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C[j].GetCleared()[0])
+                                    {
+										int amount = TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C[j].GetAmount();
+										int current = -1;
+										try
+										{
+											current = ini[0].stセクション[0].nExamResult[i][j];
+										}
+										catch (ArgumentOutOfRangeException)
+										{
+											ini[0].stセクション[0].nExamResult.Insert(i, new int[CExamInfo.cMaxExam]);
+											for (int part = 0; part < ini[0].stセクション[0].nExamResult[i].Length; part++)
+											{
+												// Default all values to -1, will not be saved to ScoreIni if value is not changed.
+												ini[0].stセクション[0].nExamResult[i][part] = -1;
+											}
+											current = ini[0].stセクション[0].nExamResult[i][j];
+										}
+
+										if (ini[0].stセクション[0].nExamResult[i][j] == -1)
+                                        {
+											ini[0].stセクション[0].nExamResult[i][j] = amount;
+                                        }
+										else if (TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C[j].GetExamRange() == Exam.Range.More)
+                                        {
+											ini[0].stセクション[0].nExamResult[i][j] = (amount > current) ? amount : current;
+										}
+										else if (TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Dan_C[j].GetExamRange() == Exam.Range.Less)
+										{
+											ini[0].stセクション[0].nExamResult[i][j] = (amount < current) ? amount : current;
+										}
+
+									}
+								}
+                            }
+							#endregion
+
 							if (TJAPlayer3.ConfigIni.bScoreIniを出力する)
 								ini[0].t書き出し(str[0]);
 						}
@@ -689,7 +731,7 @@ namespace TJAPlayer3
 
 					for (int i = 0; i < TJAPlayer3.stage選曲.r確定された曲.DanSongs.Count; i++)
 					{
-						this.ttkDanTitles[i] = new TitleTextureKey(TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].bTitleShow 
+						this.ttkDanTitles[i] = new TitleTextureKey(TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].bTitleShow
 							? "???" 
 							: TJAPlayer3.stage選曲.r確定された曲.DanSongs[i].Title, 
 							pfDanTitles, 

@@ -71,6 +71,14 @@ BoxFontName=廻想体 ネクスト UP B
 025 - Fearless : Ash Electric - https://linktr.ee/ashelectric (Chart by 0AuBSQ)
 026 - Lost Emotion. : DashyDesu - https://www.youtube.com/c/DashyDesu (Chart by DashyDesu)
 027 - Broken Metronome : DashyDesu - https://www.youtube.com/c/DashyDesu (Chart by DashyDesu (Extreme, Extra) & 0AuBSQ (Easy, Normal, Hard))
+028 - Katharsis : 9C - https://youtube.com/channel/UCxx3wiFJxGwb_-tEePPa4RA (Chart by 0AuBSQ)
+029 - 2​-​Steppin' Love : FUNKYZUKIN ft. Hatsune Miku - https://funkyzukin.bandcamp.com/album/2-steppin-love-single (Chart by colin, Extra by 0AuBSQ)
+030 - 闇 : TFD500 - https://www.youtube.com/channel/UCJjrxomZT2973fr8-9Yts_w (Chart by bol)
+031 - Mischief Madness : Makotora - https://soundcloud.com/xoxomakotora | Makotora#0001 (Chart by Makotora)
+032 - Re：Cøllapse : H888. (H5 + DashyDesu) - https://www.youtube.com/c/DashyDesu https://linktr.ee/H5Music (Chart by DashyDesu (Extreme) and bol (Easy, Normal, Hard))
+033 - Alonebirthday : Taichenko - https://space.bilibili.com/356518101 (Chart by Taichenko (Extreme), 0AuBSQ (Extra) and bol (Easy, Normal, Hard))
+034 - The World of Our Past : DashyDesu & rainfall - https://www.youtube.com/c/DashyDesu https://soundcloud.com/user-698445934 (Chart by DashyDesu)
+035 - ENDOMANCER : Zovi - https://zovi.bandcamp.com/ https://soundcloud.com/zovi https://twitter.com/zovinoise (Chart by 0AuBSQ)
 ```
 
 ### About the OpenTaiko Original Soundtrack
@@ -116,5 +124,5 @@ Main developer : 0AuBSQ - https://github.com/0auBSQ/OpenTaiko
 Several bug fixes and improvements : l1m0n3 - https://github.com/l1m0n3
 Complete removal of the SlimDX dependency : Mr-Oiji https://github.com/Mr-Ojii
 Several features and major improvements : Takkkom - https://github.com/Takkkom
-Mod icons : FAKEYJSNPI - https://github.com/FAKEYJSNPI 
+Mod icons : FAKEYJSNPI - https://github.com/FAKEYJSNPI
 ```
