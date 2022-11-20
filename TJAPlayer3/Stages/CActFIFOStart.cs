@@ -95,7 +95,7 @@ namespace TJAPlayer3
 						DrawBack(time < 500.0 ? TJAPlayer3.Tx.SongLoading_Fade : TJAPlayer3.Tx.SongLoading_Bg, time, 0, 500.0, false);
 						DrawStar(FadeValue * 255f);
 						DrawPlate(FadeValue * 255f, FadeValue);
-						DrawChara(time, (time - 730f) * (255f / 270f));
+						DrawChara(time, (time <= 80.0 ? 0 : 0f + (float)((Math.Pow((time - 80f), 1.5f) / Math.Pow(220f, 1.5f)) * 255f)), 250f, 0);
 					}
 
 				}
@@ -111,8 +111,8 @@ namespace TJAPlayer3
 
 						DrawBack(time < 300.0 ? TJAPlayer3.Tx.SongLoading_Bg : TJAPlayer3.Tx.SongLoading_Fade, time, 300.0, 500.0, true);
 						DrawStar(255f - (FadeValue * 255f));
-						DrawPlate(255f - (FadeValue * 255f), 1f + (FadeValue * 0.5f), 1f - FadeValue);
-						DrawChara(time, (time <= 80.0 ? 255 : 255f - (float)((Math.Pow((time - 80f), 1.5f) / Math.Pow(220f, 1.5f)) * 255f)), 250f, (time <= 80.0 ? ((time / 80f) * 30f) : 30f - (float)((Math.Pow((time - 80f), 1.5f) / Math.Pow(220f, 1.5f)) * 320f)));
+						DrawPlate(255f - (FadeValue * 255f), 1f + (FadeValue * 0.5f), 1f - FadeValue);						
+						DrawChara(time, (time <= 80.0 ? 255 : 255f - (float)((Math.Pow((time - 80f), 1.5f) / Math.Pow(220f, 1.5f)) * 255f)), 250f, 0);
 					}
 				}
 			}
@@ -182,6 +182,16 @@ namespace TJAPlayer3
 		public void DrawChara(double time, float opacity, float X = -1, float Y = -1)
 		{
 			if (TJAPlayer3.Tx.SongLoading_Plate is null || (X == -1 && Y == -1 ? time <= 680 : false)) return;
+			string genre = TJAPlayer3.stage選曲.NowGenre;
+			if (TJAPlayer3.Tx.SongLoading_Charas.ContainsKey(genre))
+			{
+				TJAPlayer3.Tx.SongLoading_Chara = TJAPlayer3.Tx.SongLoading_Charas[genre];
+			}
+			else
+			{
+				TJAPlayer3.Tx.SongLoading_Chara = TJAPlayer3.Tx.SongLoading_Charas["default"];
+			}
+
 			var SizeXHarf = TJAPlayer3.Tx.SongLoading_Chara.szテクスチャサイズ.Width / 2f;
 			var SizeY = TJAPlayer3.Tx.SongLoading_Chara.szテクスチャサイズ.Height;
 
