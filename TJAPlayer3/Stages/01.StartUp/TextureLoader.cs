@@ -12,6 +12,7 @@ namespace TJAPlayer3
     {
         public const string BASE = @"Graphics\";
         const string GLOBAL = @"Global\";
+        const string SONGS = @"Songs\";
 
         // Global assets 
         const string PUCHICHARA = @"PuchiChara\";
@@ -102,6 +103,15 @@ namespace TJAPlayer3
         internal CTexture TxCGen(string FileName)
         {
             return TJAPlayer3.tテクスチャの生成(CSkin.Path(BASE + GAME + GENRE + FileName + ".png"));
+        }
+
+        //Debugging method so I don't need to restart the program everytime I change
+        //the texture
+        public CTexture reloadTX(string filename)
+        {
+            var tex = TJAPlayer3.tテクスチャの生成(CSkin.Path(BASE + filename));
+            listTexture.Add(tex);
+            return tex;
         }
 
         public void LoadTexture()
@@ -338,7 +348,21 @@ namespace TJAPlayer3
             SongLoading_BgWait = TxC(SONGLOADING + @"Bg_Wait.png");
             SongLoading_Chara = TxC(SONGLOADING + @"Chara.png");
             SongLoading_Fade = TxC(SONGLOADING + @"Fade.png");
-            SongLoading_Bg_Dan = TxC(SONGLOADING + @"Bg_Dan.png");
+            SongLoading_Bg_Dan = TxC(SONGLOADING + @"Bg_Dan.png");                       
+
+            SongLoading_Charas = new Dictionary<string, CTexture>();
+            SongLoading_Charas["default"] = SongLoading_Chara;
+            IEnumerable<string> genres = Directory.EnumerateDirectories(TJAPlayer3.strEXEのあるフォルダ + SONGS);
+            foreach (string genre in genres)
+            {
+                string genre_normalized = Path.GetFileName(genre).ToLower().Replace(" ", "-");
+                string potential_chara_texture = Path.Combine(CSkin.Path(BASE + SONGLOADING), genre_normalized + "-chara.png");
+                if (File.Exists(potential_chara_texture))
+                {
+                    string chara_path = Path.Combine(SONGLOADING, genre_normalized + "-chara.png");
+                    SongLoading_Charas.Add(genre_normalized, TxC(chara_path));
+                }
+            }
 
             #endregion
 
@@ -1788,7 +1812,10 @@ namespace TJAPlayer3
             SongLoading_BgWait,
             SongLoading_Chara,
             SongLoading_Bg_Dan,
-            SongLoading_Fade;
+            SongLoading_Fade,
+            SongLoading_Chara_default;
+
+        public Dictionary<String, CTexture> SongLoading_Charas;
         #endregion
 
         #region 5_演奏画面

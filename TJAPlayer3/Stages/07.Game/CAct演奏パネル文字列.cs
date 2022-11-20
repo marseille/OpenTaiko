@@ -28,24 +28,27 @@ namespace TJAPlayer3
 
         private readonly Dictionary<string, Color4> tTagDict = new Dictionary<string, Color4>
         {
-            ["アニメ"] = new Color4(tToArgb(253, 145, 208)),
+            ["アニメ"] = new Color4(tToArgb(204, 139, 236)),
             ["Anime"] = new Color4(tToArgb(253, 145, 208)),
-            ["クラシック"] = new Color4(tToArgb(221, 172, 4)),
-            ["Classical"] = new Color4(tToArgb(221, 172, 4)),
-            ["バラエティ"] = new Color4(tToArgb(32, 218, 56)),
+            ["アイマス"] = new Color4(tToArgb(205, 89, 167)),
+            ["クラシック"] = new Color4(tToArgb(254, 192, 0)),
+            ["Classical"] = new Color4(tToArgb(221, 172, 4)),            
+            ["バラエティ"] = new Color4(tToArgb(204, 207, 222)),
             ["Variety"] = new Color4(tToArgb(32, 218, 56)),
+            ["variety"] = new Color4(tToArgb(32, 218, 56)),
+            ["touhou"] = new Color4(tToArgb(58, 154, 218)),
             ["どうよう"] = new Color4(tToArgb(254, 191, 3)),
-            ["キッズ"] = new Color4(tToArgb(254, 191, 3)),
-            ["Children & Folk"] = new Color4(tToArgb(254, 191, 3)),
-            ["ボーカロイド"] = new Color4(tToArgb(204, 207, 222)),
+            ["キッズ"] = new Color4(tToArgb(202, 192, 1)),
+            ["Children & Folk"] = new Color4(tToArgb(254, 191, 3)),            
+            ["ボーカロイド"] = new Color4(tToArgb(27, 199, 58)),
             ["VOCALOID"] = new Color4(tToArgb(204, 207, 222)),
-            ["Vocaloid"] = new Color4(tToArgb(204, 207, 222)),
-            ["ゲームミュージック"] = new Color4(tToArgb(205, 138, 237)),
+            ["Vocaloid"] = new Color4(tToArgb(204, 207, 222)),            
+            ["ゲームミュージック"] = new Color4(tToArgb(255,47,237)),
             ["ゲームバラエティ"] = new Color4(tToArgb(205, 138, 237)),
-            ["Game Music"] = new Color4(tToArgb(205, 138, 237)),
-            ["J-POP"] = new Color4(tToArgb(68, 192, 209)),
+            ["Game Music"] = new Color4(tToArgb(255, 47, 88)),
+            ["J-POP"] = new Color4(tToArgb(66, 192, 211)),
             ["POP"] = new Color4(tToArgb(68, 192, 209)),
-            ["ナムコオリジナル"] = new Color4(tToArgb(255, 70, 28)),
+            ["ナムコオリジナル"] = new Color4(tToArgb(255, 112, 40)),
             ["OpenTaikoオリジナル"] = new Color4(tToArgb(249, 255, 40)),
             ["OpenTaiko Original"] = new Color4(tToArgb(249, 255, 40)),
             ["ポップス"] = new Color4(tToArgb(68, 192, 209)),
@@ -127,7 +130,41 @@ namespace TJAPlayer3
 				}
 
                 this.txGENRE = TJAPlayer3.Tx.TxCGen("Template");
-
+                switch (genreName)
+                {
+                    case "anime":
+                        genreName = "アニメ";
+                        break;
+                    case "children-and-folk":
+                        genreName = "キッズ";
+                        break;
+                    case "classical":
+                        genreName = "クラシック";
+                        break;
+                    case "game-music":
+                        genreName = "ゲームミュージック";
+                        break;
+                    case "namco-original":
+                        genreName = "ナムコオリジナル";
+                        break;
+                    case "pop":
+                        genreName = "J-POP";
+                        break;
+                    case "the-idolm@ster":
+                        genreName = "アイマス";
+                        break;
+                    case "touhou":
+                        genreName = "東方Project";
+                        break;
+                    case "variety":
+                        genreName = "バラエティ";
+                        break;
+                    case "vocaloid":
+                        genreName = "ボーカロイド";
+                        break;
+                    default:
+                        break;
+                }
                 Color stageColor = Color.White;
                 if (songNode != null && songNode.isChangedBoxColor)
                     stageColor = songNode.BoxColor;
