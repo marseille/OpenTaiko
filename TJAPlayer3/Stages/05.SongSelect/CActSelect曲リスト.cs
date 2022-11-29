@@ -76,7 +76,15 @@ namespace TJAPlayer3
 		public void ResetSongIndex()
         {
 			nSelectSongIndex = 0;
-			this.r現在選択中の曲 = TJAPlayer3.Songs管理.list曲ルート[nSelectSongIndex];
+			if (TJAPlayer3.Songs管理.list曲ルート.Count() == 0)
+			{
+				this.r現在選択中の曲 = null;
+
+			}
+			else
+			{
+				this.r現在選択中の曲 = TJAPlayer3.Songs管理.list曲ルート[nSelectSongIndex];
+			}
 		}
 
 		public int nスクロールバー相対y座標
