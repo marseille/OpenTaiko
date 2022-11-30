@@ -2793,6 +2793,8 @@ namespace TJAPlayer3
                     this.b強制的に分岐させた[0] = true;
                 }
 
+                TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
+
                 if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F4 ) )
 				{
                     if( TJAPlayer3.ConfigIni.bJudgeCountDisplay == false )
@@ -2802,22 +2804,18 @@ namespace TJAPlayer3
 				}
 				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F5 ) )
 				{
+                    /*
                     switch( TJAPlayer3.ConfigIni.eClipDispType  )
                     {
                         case EClipDispType.OFF:
-                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.背景のみ;
-                            break;
-                        case EClipDispType.背景のみ:
                             TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
-                            break;
+                            break;            
                         case EClipDispType.ウィンドウのみ:
-                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.両方;
-                            break;
-                        case EClipDispType.両方:
                             TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.OFF;
-                            break;
                     }
-				}
+                    */
+                    TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
+                }
                 if (TJAPlayer3.ConfigIni.bTokkunMode) 
                 {
                     if (keyboard.bキーが押された((int)SlimDXKeys.Key.F6))
