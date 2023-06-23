@@ -268,6 +268,44 @@ namespace TJAPlayer3
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.A))
 					this.t現在の位置にジャンプポイントを設定する();
 
+
+
+				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F5) && (TJAPlayer3.ConfigIni.bTokkunMode == true) && (this.b特訓PAUSE))
+				{
+					string path_to_song = TJAPlayer3.DTX.strファイル名の絶対パス;
+					CScoreIni ini = new CScoreIni(path_to_song + ".score.ini" );
+					TJAPlayer3.DTX = new CDTX(path_to_song, false, 1.0, ini.stファイル.BGMAdjust, 0, 0, true, TJAPlayer3.stage選曲.n確定された曲の難易度[0]);
+
+					int nWAVcount = 1;
+					int looptime = (TJAPlayer3.ConfigIni.b垂直帰線待ちを行う) ? 3 : 1;   // VSyncWait=ON時は1frame(1/60s)あたり3つ読むようにする
+
+					if (TJAPlayer3.DTX.listWAV.Count <= 0)
+					{
+						CSound管理.rc演奏用タイマ.t再開();
+						TJAPlayer3.Timer.t再開();
+						TJAPlayer3.stage演奏ドラム画面.t演奏中止();
+					}
+					else
+					{
+						for (int i = 0; i < looptime && nWAVcount <= TJAPlayer3.DTX.listWAV.Count; i++)
+						{
+							if (TJAPlayer3.DTX.listWAV[nWAVcount].listこのWAVを使用するチャンネル番号の集合.Count > 0)   // #28674 2012.5.8 yyagi
+							{
+								TJAPlayer3.DTX.tWAVの読み込み(TJAPlayer3.DTX.listWAV[nWAVcount]);
+							}
+							nWAVcount++;
+						}
+
+						if (nWAVcount > TJAPlayer3.DTX.listWAV.Count)
+						{
+							if (TJAPlayer3.ConfigIni.bDynamicBassMixerManagement)
+							{
+								TJAPlayer3.DTX.PlanToAddMixerChannel();
+							}
+						}
+					}
+				}
+
 				if (this.bスクロール中)
 				{
 					CSound管理.rc演奏用タイマ.n現在時刻ms = easing.EaseOut(this.ctスクロールカウンター, (int)this.nスクロール前ms, (int)this.nスクロール後ms, Easing.CalcType.Circular);
@@ -332,7 +370,7 @@ namespace TJAPlayer3
 			{
 				this.ct背景スクロールタイマー.t進行Loop();
 
-				double TexSize = 1280 / TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width;
+				double TexSize = TJAPlayer3.Skin.Resolution[0] / TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width;
 				// 1280をテクスチャサイズで割ったものを切り上げて、プラス+1足す。
 				int ForLoop = (int)Math.Ceiling(TexSize) + 1;
 				TJAPlayer3.Tx.Tokkun_Background_Up.t2D描画(TJAPlayer3.app.Device, 0 - this.ct背景スクロールタイマー.n現在の値, TJAPlayer3.Skin.Background_Scroll_Y[0]);
@@ -342,8 +380,8 @@ namespace TJAPlayer3
 				}
 			}
 
-			if (TJAPlayer3.Tx.Tokkun_DownBG != null) TJAPlayer3.Tx.Tokkun_DownBG.t2D描画(TJAPlayer3.app.Device, 0, 360);
-			if (TJAPlayer3.Tx.Tokkun_BigTaiko != null) TJAPlayer3.Tx.Tokkun_BigTaiko.t2D描画(TJAPlayer3.app.Device, 334, 400);
+			if (TJAPlayer3.Tx.Tokkun_DownBG != null) TJAPlayer3.Tx.Tokkun_DownBG.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_DownBG[0], TJAPlayer3.Skin.Game_Training_DownBG[1]);
+			if (TJAPlayer3.Tx.Tokkun_BigTaiko != null) TJAPlayer3.Tx.Tokkun_BigTaiko.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_BigTaiko[0], TJAPlayer3.Skin.Game_Training_BigTaiko[1]);
 
 			return base.On進行描画();
 		}
@@ -351,7 +389,7 @@ namespace TJAPlayer3
 		public void On進行描画_小節_速度()
 		{
 			if (TJAPlayer3.Tx.Tokkun_Speed_Measure != null)
-				TJAPlayer3.Tx.Tokkun_Speed_Measure.t2D描画(TJAPlayer3.app.Device, 0, 360);
+				TJAPlayer3.Tx.Tokkun_Speed_Measure.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_Speed_Measure[0], TJAPlayer3.Skin.Game_Training_Speed_Measure[1]);
 			var maxMeasureStr = this.n小節の総数.ToString();
 			var measureStr = TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0].ToString();
 			if (TJAPlayer3.Tx.Tokkun_SmallNumber != null)
@@ -600,4 +638,3 @@ namespace TJAPlayer3
 		#endregion
 	}
 }
-
