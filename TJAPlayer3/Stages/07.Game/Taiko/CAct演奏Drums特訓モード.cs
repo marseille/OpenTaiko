@@ -476,7 +476,7 @@ namespace TJAPlayer3
 			int n演奏開始Chip = TJAPlayer3.stage演奏ドラム画面.n現在のトップChip;
 			int finalStartBar;
 
-			finalStartBar = this.n現在の小節線 - 2;
+			finalStartBar = this.n現在の小節線;
 			if (finalStartBar < 0) finalStartBar = 0;
 
 			TJAPlayer3.stage演奏ドラム画面.t演奏位置の変更(finalStartBar, 0);
