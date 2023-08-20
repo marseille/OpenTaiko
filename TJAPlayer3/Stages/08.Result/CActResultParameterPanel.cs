@@ -459,6 +459,20 @@ namespace TJAPlayer3
 								TJAPlayer3.Skin.soundScoreDon.t再生する();
 								b音声再生[6] = true;
 							}
+
+							if (TJAPlayer3.ConfigIni.nPlayerCount == 1)
+							{
+								int difficulty = TJAPlayer3.stage選曲.n確定された曲の難易度[0];
+								int highscore = TJAPlayer3.stage結果.st演奏記録.Drums.nハイスコア[difficulty];
+								int thisround_score = (int)TJAPlayer3.stage演奏ドラム画面.actScore.Get(E楽器パート.DRUMS, 0);
+
+								//Since new high-score has already been recorded to disk, check if this score is equal to the highscore.
+								//it will always be lower if it is not a new highscore
+								if (thisround_score >= highscore)
+								{
+									TJAPlayer3.Tx.result_me.t2D描画(TJAPlayer3.app.Device, (TJAPlayer3.Skin.nResultScoreP1X + totalShift) - 75, TJAPlayer3.Skin.nResultScoreP1Y + 47); //when using 60% smaller version							
+								}
+							}
 						}
 
 						#endregion
@@ -769,6 +783,8 @@ namespace TJAPlayer3
 
 				#endregion
 			}
+
+
 
 			if (!this.ct表示用.b終了値に達した)
 			{

@@ -268,12 +268,10 @@ namespace TJAPlayer3
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.A))
 					this.t現在の位置にジャンプポイントを設定する();
 
-
-
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F5) && (TJAPlayer3.ConfigIni.bTokkunMode == true) && (this.b特訓PAUSE))
 				{
 					string path_to_song = TJAPlayer3.DTX.strファイル名の絶対パス;
-					CScoreIni ini = new CScoreIni(path_to_song + ".score.ini" );
+					CScoreIni ini = new CScoreIni(path_to_song + ".score.ini");
 					TJAPlayer3.DTX = new CDTX(path_to_song, false, 1.0, ini.stファイル.BGMAdjust, 0, 0, true, TJAPlayer3.stage選曲.n確定された曲の難易度[0]);
 
 					int nWAVcount = 1;
@@ -305,6 +303,7 @@ namespace TJAPlayer3
 						}
 					}
 				}
+
 
 				if (this.bスクロール中)
 				{

@@ -904,6 +904,7 @@ namespace TJAPlayer3
             Result_ScoreRankEffect = TxC(RESULT + @"ScoreRankEffect.png");
             Result_Cloud = TxC(RESULT + @"Cloud.png");
             Result_Shine = TxC(RESULT + @"Shine.png");
+            result_me = TxC(RESULT + @"banner-outline-2.png");
 
             Result_Speech_Bubble[0] = TxC(RESULT + @"Speech_Bubble.png");
             Result_Speech_Bubble[1] = TxC(RESULT + @"Speech_Bubble_2.png");
@@ -2019,7 +2020,7 @@ namespace TJAPlayer3
 
         #region 6_結果発表
         public CTexture Result_FadeIn,
-            
+
             Result_Header,
             Result_Number,
             Result_Panel,
@@ -2028,15 +2029,13 @@ namespace TJAPlayer3
             Result_Soul_Fire,
             Result_Diff_Bar,
             Result_Score_Number,
-
             Result_CrownEffect,
             Result_ScoreRankEffect,
-            
             Result_Cloud,
             Result_Flower,
             Result_Shine,
-
-            Result_Dan;
+            Result_Dan,
+            result_me;
             
         public CTexture[]
             Result_Rainbow = new CTexture[41],
