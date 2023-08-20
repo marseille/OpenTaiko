@@ -2791,9 +2791,7 @@ namespace TJAPlayer3
                     this.nレーン用表示コース[0] = CDTX.ECourse.eMaster;
 
                     this.b強制的に分岐させた[0] = true;
-                }
-
-                TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
+                }                
 
                 if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F4 ) )
 				{
@@ -2804,17 +2802,21 @@ namespace TJAPlayer3
 				}
 				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F5 ) )
 				{
-                    /*
-                    switch( TJAPlayer3.ConfigIni.eClipDispType  )
+                    switch (TJAPlayer3.ConfigIni.eClipDispType)
                     {
                         case EClipDispType.OFF:
+                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.背景のみ;
+                            break;
+                        case EClipDispType.背景のみ:
                             TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
-                            break;            
+                            break;
                         case EClipDispType.ウィンドウのみ:
+                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.両方;
+                            break;
+                        case EClipDispType.両方:
                             TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.OFF;
+                            break;
                     }
-                    */
-                    TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
                 }
                 if (TJAPlayer3.ConfigIni.bTokkunMode) 
                 {
