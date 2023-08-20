@@ -117,7 +117,7 @@ namespace TJAPlayer3
 
 				TJAPlayer3.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.白, "TRAINING MODE (BETA)");
 
-				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Space)|| TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RRed2P))
+				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Space) || TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RRed2P))
 				{
 					if (this.b特訓PAUSE)
 					{
@@ -369,7 +369,7 @@ namespace TJAPlayer3
 			{
 				this.ct背景スクロールタイマー.t進行Loop();
 
-				double TexSize = TJAPlayer3.Skin.Resolution[0] / TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width;
+				double TexSize = 1280 / TJAPlayer3.Tx.Tokkun_Background_Up.szテクスチャサイズ.Width;
 				// 1280をテクスチャサイズで割ったものを切り上げて、プラス+1足す。
 				int ForLoop = (int)Math.Ceiling(TexSize) + 1;
 				TJAPlayer3.Tx.Tokkun_Background_Up.t2D描画(TJAPlayer3.app.Device, 0 - this.ct背景スクロールタイマー.n現在の値, TJAPlayer3.Skin.Background_Scroll_Y[0]);
@@ -379,8 +379,8 @@ namespace TJAPlayer3
 				}
 			}
 
-			if (TJAPlayer3.Tx.Tokkun_DownBG != null) TJAPlayer3.Tx.Tokkun_DownBG.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_DownBG[0], TJAPlayer3.Skin.Game_Training_DownBG[1]);
-			if (TJAPlayer3.Tx.Tokkun_BigTaiko != null) TJAPlayer3.Tx.Tokkun_BigTaiko.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_BigTaiko[0], TJAPlayer3.Skin.Game_Training_BigTaiko[1]);
+			if (TJAPlayer3.Tx.Tokkun_DownBG != null) TJAPlayer3.Tx.Tokkun_DownBG.t2D描画(TJAPlayer3.app.Device, 0, 360);
+			if (TJAPlayer3.Tx.Tokkun_BigTaiko != null) TJAPlayer3.Tx.Tokkun_BigTaiko.t2D描画(TJAPlayer3.app.Device, 334, 400);
 
 			return base.On進行描画();
 		}
@@ -388,7 +388,7 @@ namespace TJAPlayer3
 		public void On進行描画_小節_速度()
 		{
 			if (TJAPlayer3.Tx.Tokkun_Speed_Measure != null)
-				TJAPlayer3.Tx.Tokkun_Speed_Measure.t2D描画(TJAPlayer3.app.Device, TJAPlayer3.Skin.Game_Training_Speed_Measure[0], TJAPlayer3.Skin.Game_Training_Speed_Measure[1]);
+				TJAPlayer3.Tx.Tokkun_Speed_Measure.t2D描画(TJAPlayer3.app.Device, 0, 360);
 			var maxMeasureStr = this.n小節の総数.ToString();
 			var measureStr = TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0].ToString();
 			if (TJAPlayer3.Tx.Tokkun_SmallNumber != null)
@@ -489,7 +489,7 @@ namespace TJAPlayer3
 
 			for (int i = 0; i < dTX.listChip.Count; i++)
 			{
-				
+
 				//if (i < n演奏開始Chip && (dTX.listChip[i].nチャンネル番号 > 0x10 && dTX.listChip[i].nチャンネル番号 < 0x20)) //2020.07.08 ノーツだけ消す。 null参照回避のために順番変更
 				if (i < n演奏開始Chip && NotesManager.IsHittableNote(dTX.listChip[i]))
 				{
@@ -637,3 +637,4 @@ namespace TJAPlayer3
 		#endregion
 	}
 }
+
