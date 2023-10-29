@@ -241,6 +241,7 @@ namespace TJAPlayer3
 				Trace.TraceInformation( "0) システムサウンドを構築します。" );
 				Trace.Indent();
 
+
 				try
 				{
 					TJAPlayer3.Skin.bgm起動画面.t再生する();
@@ -255,10 +256,6 @@ namespace TJAPlayer3
 								{
 									cシステムサウンド.t読み込み();
 									Trace.TraceInformation( "システムサウンドを読み込みました。({0})", cシステムサウンド.strファイル名 );
-									//if ( ( cシステムサウンド == CDTXMania.Skin.bgm起動画面 ) && cシステムサウンド.b読み込み成功 )
-									//{
-									//	cシステムサウンド.t再生する();
-									//}
 								}
 								catch ( FileNotFoundException )
 								{
@@ -292,9 +289,6 @@ namespace TJAPlayer3
 				
 				//-----------------------------
 				TJAPlayer3.stage起動.eフェーズID = CStage.Eフェーズ.起動00_songlistから曲リストを作成する;
-
-				Trace.TraceInformation( "1) songlist.dbを読み込みます。" );
-				Trace.Indent();
 
 				/*
 				try
@@ -398,6 +392,7 @@ namespace TJAPlayer3
 									}
 									catch ( Exception e )
 									{
+										//GO HERE FOR EXCEPTIONS WHEN LOADING SONGS
 										Trace.TraceError( e.ToString() );
 										Trace.TraceError( "例外が発生しましたが処理を継続します。 (105fd674-e722-4a4e-bd9a-e6f82ac0b1d3)" );
 								}
@@ -416,24 +411,19 @@ namespace TJAPlayer3
 				}
 				finally
 				{
-					Trace.TraceInformation( "曲データの検索を完了しました。[{0}曲{1}スコア]", this.Songs管理.n検索された曲ノード数, this.Songs管理.n検索されたスコア数 );
-					Trace.Unindent();
+					//this statement becomes null reload songs
+					//songs not found mega					
+					Trace.TraceInformation( "There was an error loading songs, CEnumSongs.cs line 415 is here.");
+					Trace.Unindent();					
 				}
-				//	lock ( this.list進行文字列 )
-				//	{
-				//		this.list進行文字列.Add( string.Format( "{0} ... {1} scores ({2} songs)", "Enumerating songs", this..Songs管理_裏読.n検索されたスコア数, this.Songs管理_裏読.n検索された曲ノード数 ) );
-				//	}
-				//-----------------------------
+				if(this.Songs管理 == null)
+                {
+					return;
+                }
+
 				#endregion
 				#region [ 4) songs.db になかった曲データをファイルから読み込んで反映 ]
-				//-----------------------------
-				//					base.eフェーズID = CStage.Eフェーズ.起動4_スコアキャッシュになかった曲をファイルから読み込んで反映する;
-
-				int num2 = this.Songs管理.n検索されたスコア数 - this.Songs管理.nスコアキャッシュから反映できたスコア数;
-
-				Trace.TraceInformation( "{0}, {1}", this.Songs管理.n検索されたスコア数, this.Songs管理.nスコアキャッシュから反映できたスコア数 );
-				Trace.TraceInformation( "enum4) songs.db になかった曲データ[{0}スコア]の情報をファイルから読み込んで反映します。", num2 );
-				Trace.Indent();
+				//-----------------------------								
 
 				try
 				{
@@ -444,16 +434,7 @@ namespace TJAPlayer3
 					Trace.TraceError( e.ToString() );
 					Trace.TraceError( "例外が発生しましたが処理を継続します。 (276bb40f-6406-40c1-9f03-e2a9869dbc88)" );
 				}
-				finally
-				{
-					Trace.TraceInformation( "曲データへの反映を完了しました。[{0}/{1}スコア]", this.Songs管理.nファイルから反映できたスコア数, num2 );
-					Trace.Unindent();
-				}
-				//					lock ( this.list進行文字列 )
-				//					{
-				//						this.list進行文字列.Add( string.Format( "{0} ... {1}/{2}", "Loading score properties from files", CDTXMania.Songs管理_裏読.nファイルから反映できたスコア数, CDTXMania.Songs管理_裏読.n検索されたスコア数 - cs.nスコアキャッシュから反映できたスコア数 ) );
-				//					}
-				//-----------------------------
+
 				#endregion
 				#region [ 5) 曲リストへの後処理の適用 ]
 				//-----------------------------
@@ -476,18 +457,10 @@ namespace TJAPlayer3
 					Trace.TraceInformation( "曲リストへの後処理を完了しました。" );
 					Trace.Unindent();
 				}
-				//					lock ( this.list進行文字列 )
-				//					{
-				//						this.list進行文字列.Add( string.Format( "{0} ... OK", "Building songlists" ) );
-				//					}
-				//-----------------------------
 				#endregion
 
-				//				if ( !bSucceededFastBoot )	// songs2.db読み込みに成功したなら、songs2.dbを新たに作らない
 				#region [ 7) songs2.db への保存 ]		// #27060 2012.1.26 yyagi
-				Trace.TraceInformation( "enum7) 曲データの情報を songlist.db へ出力します。" );
-				Trace.Indent();
-
+				
 				//songlist.db written out on failure, causes repeated problems, doesn't exist on successful load.
 				//maybe it was supposed to be a saved state to load next time?
 				//songs not found
@@ -502,13 +475,11 @@ namespace TJAPlayer3
 			}
 			finally
 			{
-				//				base.eフェーズID = CStage.Eフェーズ.起動7_完了;
 				TimeSpan span = (TimeSpan) ( DateTime.Now - now );
 				Trace.TraceInformation( "曲探索所要時間: {0}", span.ToString() );
 			}
 			lock ( this )
-			{
-				// state = DTXEnumState.Done;		// DoneにするのはCDTXMania.cs側にて。
+			{				
 				state = DTXEnumState.Enumeratad;
 			}
 		}

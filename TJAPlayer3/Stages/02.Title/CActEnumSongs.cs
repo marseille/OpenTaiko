@@ -65,27 +65,11 @@ namespace TJAPlayer3
 		{
 			if ( this.b活性化してない )
 				return;
-			//string pathNowEnumeratingSongs = CSkin.Path( @"Graphics\ScreenTitle NowEnumeratingSongs.png" );
-			//if ( File.Exists( pathNowEnumeratingSongs ) )
-			//{
-			//	this.txNowEnumeratingSongs = CDTXMania.tテクスチャの生成( pathNowEnumeratingSongs, false );
-			//}
-			//else
-			//{
-			//	this.txNowEnumeratingSongs = null;
-			//}
-			//string pathDialogNowEnumeratingSongs = CSkin.Path( @"Graphics\ScreenConfig NowEnumeratingSongs.png" );
-			//if ( File.Exists( pathDialogNowEnumeratingSongs ) )
-			//{
-			//	this.txDialogNowEnumeratingSongs = CDTXMania.tテクスチャの生成( pathDialogNowEnumeratingSongs, false );
-			//}
-			//else
-			//{
-			//	this.txDialogNowEnumeratingSongs = null;
-			//}
 
 			try
 			{
+				//graphics display enumerating songs texture
+				//songs not found
 				System.Drawing.Font ftMessage = new System.Drawing.Font("MS UI Gothic", 40f, FontStyle.Bold, GraphicsUnit.Pixel );
 				string[] strMessage = 
 				{
@@ -143,6 +127,7 @@ namespace TJAPlayer3
 			{
 				return 0;
 			}
+			//texture for enumerating song
 			this.ctNowEnumeratingSongs.t進行Loop();
 			if ( TJAPlayer3.Tx.Enum_Song != null )
 			{

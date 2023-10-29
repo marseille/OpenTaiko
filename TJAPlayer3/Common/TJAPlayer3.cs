@@ -778,7 +778,6 @@ namespace TJAPlayer3
 						if ( EnumSongs != null )
 						{
 							#region [ (特定条件時) 曲検索スレッドの起動_開始 ]
-							//henryk
 							if ( r現在のステージ.eステージID == CStage.Eステージ.タイトル &&
 								 r直前のステージ.eステージID == CStage.Eステージ.起動 &&
 								 this.n進行描画の戻り値 == (int) CStageタイトル.E戻り値.継続 &&
