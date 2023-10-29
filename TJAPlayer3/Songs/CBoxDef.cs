@@ -10,41 +10,42 @@ namespace TJAPlayer3
 	internal class CBoxDef
 	{
 		// プロパティ
-
-		public Color Color;
+		
 		public string Genre;
 		public string Title;
-		public string[] strBoxText = new string[3];
-		public Color ForeColor;
-        public Color BackColor;
+		public string[] BoxExplanation = new string[3];		
         public bool IsChangedForeColor;
-        public bool IsChangedBackColor;
-		public Color BoxColor;
+        public bool IsChangedBackColor;		
 		public bool IsChangedBoxColor;
-		public Color BgColor;
 		public bool IsChangedBgColor;
-		public int BoxType;
-		public int BgType;
 		public bool IsChangedBoxType;
 		public bool IsChangedBgType;
-		public int BoxChara;
 		public bool IsChangedBoxChara;
+		public Color BackColor;
+		public Color BoxColor;
+		public Color BgColor;
+		public Color FontColor;
+		public Color ForeColor;
+		public int BoxChara;
+		public int BoxType;
+		public int BgType;
 
 		// コンストラクタ
 
 		public CBoxDef()
 		{
 			for (int i = 0; i < 3; i++)
-				this.strBoxText[i] = "";
-			this.Title = "";
-			this.Genre = "";
-            ForeColor = Color.White;
-            BackColor = Color.Black;
-			BoxColor = Color.White;
-			BoxType = 0;
-			BgType = 0;
-			BoxChara = 0;
-			BgColor = Color.White;
+				this.BoxExplanation[i] = "";
+			this.Title = "TITLE MISSING";
+			this.Genre = "GENRE MISSING";
+			this.FontColor = Color.Black;
+            this.ForeColor = Color.LightGray;
+			this.BackColor = Color.LightSkyBlue;
+			this.BoxColor = Color.LightSalmon;
+			this.BoxType = 0;
+			this.BgType = 0;
+			this.BoxChara = 0;
+			this.BgColor = Color.Azure;
 		}
 		public CBoxDef( string boxdefファイル名 )
 			: this()
@@ -87,7 +88,7 @@ namespace TJAPlayer3
 							}
 							else if ( str.StartsWith( "#FONTCOLOR", StringComparison.OrdinalIgnoreCase ) )
 							{
-								this.Color = ColorTranslator.FromHtml( str.Substring( 10 ).Trim( ignoreChars ) );
+								this.FontColor = ColorTranslator.FromHtml( str.Substring( 10 ).Trim( ignoreChars ) );
 							}
                             else if (str.StartsWith("#FORECOLOR", StringComparison.OrdinalIgnoreCase))
                             {
@@ -130,7 +131,7 @@ namespace TJAPlayer3
                                 {
 									if (str.StartsWith("#BOXEXPLANATION" + (i + 1).ToString(), StringComparison.OrdinalIgnoreCase))
                                     {
-										this.strBoxText[i] = str.Substring(16).Trim(ignoreChars);
+										this.BoxExplanation[i] = str.Substring(16).Trim(ignoreChars);
                                     }
 								}
 							}
@@ -146,20 +147,6 @@ namespace TJAPlayer3
 				}
 			}
 			reader.Close();
-
-			/*
-			if (!IsChangedBoxType)
-            {
-				this.BoxType = this.nStrジャンルtoNum(this.Genre);
-            }
-			if (!IsChangedBgType)
-            {
-				this.BgType = this.nStrジャンルtoNum(this.Genre);
-			}
-			*/
 		}
-
-
-
 	}
 }

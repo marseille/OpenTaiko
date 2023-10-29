@@ -102,10 +102,6 @@ namespace TJAPlayer3
 					return 0;
 				}
 
-				// CSongs管理 s管理 = CDTXMania.Songs管理;
-
-				//if( this.tx背景 != null )
-				//	this.tx背景.t2D描画( CDTXMania.app.Device, 0, 0 );
 
 				#region [ this.str現在進行中 の決定 ]
 				//-----------------
@@ -118,10 +114,6 @@ namespace TJAPlayer3
 					case CStage.Eフェーズ.起動00_songlistから曲リストを作成する:
 						this.str現在進行中 = "SONG LIST...";
 						break;
-
-					/*case CStage.Eフェーズ.起動1_SongsDBからスコアキャッシュを構築:
-						this.str現在進行中 = "SONG DATABASE...";
-						break;*/
 
 					case CStage.Eフェーズ.起動2_曲を検索してリストを作成する:
 						this.str現在進行中 = string.Format( "{0} ... {1}", "Enumerating songs", es.Songs管理.n検索されたスコア数 );
@@ -138,10 +130,6 @@ namespace TJAPlayer3
 					case CStage.Eフェーズ.起動5_曲リストへ後処理を適用する:
 						this.str現在進行中 = string.Format( "{0} ... ", "Building songlists" );
 						break;
-
-					/*case CStage.Eフェーズ.起動6_スコアキャッシュをSongsDBに出力する:
-						this.str現在進行中 = string.Format( "{0} ... ", "Saving songs.db" );
-						break;*/
 
 					case CStage.Eフェーズ.起動_テクスチャの読み込み:
                         this.list進行文字列.Add("LOADING TEXTURES...");
