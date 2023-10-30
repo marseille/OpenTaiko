@@ -757,13 +757,13 @@ namespace TJAPlayer3
 
 
 				CScoreIni scoreIni = null;
-
+				/*
 				if ( Control.IsKeyLocked( Keys.CapsLock ) )				// #30925 2013.3.11 yyagi; capslock=ON時は、EnumSongsしないようにして、起動負荷とASIOの音切れの関係を確認する
 				{														// → songs.db等の書き込み時だと音切れするっぽい
 					actEnumSongs.On非活性化();
 					EnumSongs.SongListEnumCompletelyDone();
 					TJAPlayer3.stage選曲.bIsEnumeratingSongs = false;
-				}
+				}*/
 				#region [ 曲検索スレッドの起動/終了 ]					// ここに"Enumerating Songs..."表示を集約
 				if ( !TJAPlayer3.bコンパクトモード )
 				{

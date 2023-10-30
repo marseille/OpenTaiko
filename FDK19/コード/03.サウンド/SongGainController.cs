@@ -25,6 +25,10 @@
             }
             else
             {
+                //THIS BROKE WITH NEW SONG LOADING
+                //RELOAD HENRYK
+                //FASTER 
+                //MEGA
                 sound.SetGain(ApplySongVol ? songVol : CSound.DefaultSongVol);
             }
         }

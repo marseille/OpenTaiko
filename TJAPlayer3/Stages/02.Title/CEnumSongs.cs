@@ -412,14 +412,15 @@ namespace TJAPlayer3
 				finally
 				{
 					//this statement becomes null reload songs
-					//songs not found mega					
-					Trace.TraceInformation( "There was an error loading songs, CEnumSongs.cs line 415 is here.");
-					Trace.Unindent();					
+					//songs not found mega										
 				}
+				
+				/*
 				if(this.Songs管理 == null)
                 {
 					return;
                 }
+				*/
 
 				#endregion
 				#region [ 4) songs.db になかった曲データをファイルから読み込んで反映 ]
