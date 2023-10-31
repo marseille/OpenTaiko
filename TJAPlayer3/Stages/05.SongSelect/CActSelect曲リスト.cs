@@ -725,18 +725,22 @@ namespace TJAPlayer3
 			#region [ Songs not found画像 ]
 			try
 			{
-				using( Bitmap image = new Bitmap( 640, 128 ) )
+				using( Bitmap image = new Bitmap( 1280, 256 ) )
 				using( Graphics graphics = Graphics.FromImage( image ) )
 				{
 					string[] s1 = { "曲データが見つかりません。", "Songs not found." };
 					string[] s2 = { "曲データをDTXManiaGR.exe以下の", "You need to install songs." };
 					string[] s3 = { "フォルダにインストールして下さい。", "" };
+					string[] s4 = { "JP for songs not found (sorry)", "Ensure your folder box.defs and .tjas are not missing attributes (like genre)." };
+					string[] s5 = { "JP 2 for songs not found(sorry)", "see box.reference and tja.reference file for complete specification." };
 					graphics.DrawString( s1[c], this.ft曲リスト用フォント, Brushes.DarkGray, (float) 2f, (float) 2f );
 					graphics.DrawString( s1[c], this.ft曲リスト用フォント, Brushes.White, (float) 0f, (float) 0f );
 					graphics.DrawString( s2[c], this.ft曲リスト用フォント, Brushes.DarkGray, (float) 2f, (float) 44f );
 					graphics.DrawString( s2[c], this.ft曲リスト用フォント, Brushes.White, (float) 0f, (float) 42f );
 					graphics.DrawString( s3[c], this.ft曲リスト用フォント, Brushes.DarkGray, (float) 2f, (float) 86f );
 					graphics.DrawString( s3[c], this.ft曲リスト用フォント, Brushes.White, (float) 0f, (float) 84f );
+					graphics.DrawString(s4[c], this.ft曲リスト用フォント, Brushes.White, (float)0f, (float)98f);
+					graphics.DrawString(s5[c], this.ft曲リスト用フォント, Brushes.White, (float)0f, (float)140f);
 
 					this.txSongNotFound = new CTexture( TJAPlayer3.app.Device, image, TJAPlayer3.TextureFormat );
 
