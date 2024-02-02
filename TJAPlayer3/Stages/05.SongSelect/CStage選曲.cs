@@ -974,6 +974,8 @@ namespace TJAPlayer3
 
                                 #endregion
 
+                                //I think this is where speed skip fast travel category navigate is
+
                                 #region [ Up ]
                                 if (!this.bスクロール中)
                                 {
@@ -992,7 +994,7 @@ namespace TJAPlayer3
                                         //this.ctDonchan_Jump[1].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.START);
 
-                                        for (int i = 0; i < 7; i++) tカーソルスキップ(true);
+                                        for (int i = 0; i < 23; i++) tカーソルスキップ(true);
                                     }
                                 }
                                 #endregion
@@ -1016,7 +1018,7 @@ namespace TJAPlayer3
                                         //this.ctDonchan_Jump[1].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.START);
 
-                                        for (int i = 0; i < 7; i++) tカーソルスキップ(false);
+                                        for (int i = 0; i < 23; i++) tカーソルスキップ(false);
                                     }
                                 }
                             #endregion
