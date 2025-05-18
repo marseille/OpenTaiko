@@ -1,0 +1,5 @@
+Saving repo size --- themes aren't committed to the Test/System folder. 
+
+They are ignored by .gitignore
+
+Ensure you paste your own theme folder into Test/System for a functional build
