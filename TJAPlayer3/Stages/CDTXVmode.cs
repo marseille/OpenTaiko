@@ -392,16 +392,14 @@ Trace.TraceInformation( "Command: " + s[ (int) this.Command ] );
 						cc.tファイルから読み込み( path );
 					}
 					catch (Exception e)
-					{
-						//ConfigIni = new CConfigIni();	// 存在してなければ新規生成
+					{						
 						Trace.TraceError( e.ToString() );
 						Trace.TraceError( "例外が発生しましたが処理を継続します。 (825f9ba6-9164-4f2e-8c41-edf4d73c06c9)" );
 					}
 				}
 				fi = null;
 			}
-
-			//cc.nViewerScrollSpeed[0]  = TJAPlayer3.ConfigIni.nScrollSpeed[TJAPlayer3.SaveFile];
+			
 			cc.bViewerShowDebugStatus = TJAPlayer3.ConfigIni.b演奏情報を表示する;
 			cc.bViewerVSyncWait       = TJAPlayer3.ConfigIni.b垂直帰線待ちを行う;
 			cc.bViewerTimeStretch     = TJAPlayer3.ConfigIni.bTimeStretch;

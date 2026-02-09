@@ -136,8 +136,7 @@ namespace TJAPlayer3
             else if (stamp == 6000)
             {
                 if (!ctDonchan_In.b開始した)
-                {
-                    //TJAPlayer3.Skin.soundDanSelectStart.t再生する();
+                {                    
                     TJAPlayer3.Skin.voiceMenuDanSelectStart[TJAPlayer3.SaveFile]?.t再生する();
                     TJAPlayer3.Skin.soundDanSelectBGM.t再生する();
                     ctDonchan_In.t開始(0, 180, 1.25f, TJAPlayer3.Timer);
@@ -165,8 +164,6 @@ namespace TJAPlayer3
                     if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Return) ||
                         TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.Decide))
                     {
-                        //this.t段位を選択する();
-                        //TJAPlayer3.Skin.soundDanSongSelectCheck.t再生する();
                         TJAPlayer3.Skin.voiceMenuDanSelectPrompt[TJAPlayer3.SaveFile]?.t再生する();
                         this.bDifficultyIn = true;
                         this.段位挑戦選択画面.ctBarIn.t開始(0, 255, 1, TJAPlayer3.Timer);
@@ -175,12 +172,14 @@ namespace TJAPlayer3
                     if(TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Escape) ||
                         TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.Cancel))
                     {
+                     
                         TJAPlayer3.Skin.soundDanSelectBGM.t停止する();
                         TJAPlayer3.Skin.sound取消音.t再生する();
                         this.eフェードアウト完了時の戻り値 = E戻り値.タイトルに戻る;
                         this.actFOtoTitle.tフェードアウト開始();
                         base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
                         return 0;
+                       
                     }
                 }
 

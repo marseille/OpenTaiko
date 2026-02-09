@@ -256,17 +256,9 @@ namespace TJAPlayer3
 			{
 				if ( this.bキー入力待ち )
 				{
-					#region [ Shift-F1: CONFIG画面 ]
-					if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int)SlimDXKeys.Key.RightShift ) || TJAPlayer3.Input管理.Keyboard.bキーが押されている( (int)SlimDXKeys.Key.LeftShift ) ) &&
-						TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDXKeys.Key.F1 ) )
-					{	// [SHIFT] + [F1] CONFIG
-						TJAPlayer3.Skin.sound取消音.t再生する();
-						tCancel();
-						this.bGotoDetailConfig = true;
-					}
-					#endregion
+					
 					#region [ キー入力: キャンセル ]
-					else if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDXKeys.Key.Escape )
+					if ( ( TJAPlayer3.Input管理.Keyboard.bキーが押された( (int)SlimDXKeys.Key.Escape )
 						|| TJAPlayer3.Pad.b押された( E楽器パート.DRUMS, Eパッド.FT )
 						|| TJAPlayer3.Pad.b押されたGB( Eパッド.Cancel ) )
                         && this.bEsc有効 )
@@ -279,8 +271,7 @@ namespace TJAPlayer3
 
 					if (!b選択した)
 					{
-						#region [ キー入力: 決定 ]
-						// E楽器パート eInst = E楽器パート.UNKNOWN;
+						#region [ キー入力: 決定 ]						
 						ESortAction eAction = ESortAction.END;
 						if (TJAPlayer3.Pad.b押された(E楽器パート.GUITAR, Eパッド.Decide))
 						{

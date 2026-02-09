@@ -496,13 +496,7 @@ namespace TJAPlayer3
                 }
 
                 if(!BGA_Hidden && !bDoublePlay && TJAPlayer3.ConfigIni.ShowFooter && !TJAPlayer3.ConfigIni.bTokkunMode)
-                    this.actFooter.On進行描画();
-
-                //this.t進行描画_グラフ();   // #24074 2011.01.23 add ikanick
-
-
-                //this.t進行描画_DANGER();
-                //this.t進行描画_判定ライン();
+                    this.actFooter.On進行描画();                
 
                 if( TJAPlayer3.ConfigIni.ShowChara )
                     this.actChara.On進行描画();
@@ -517,9 +511,7 @@ namespace TJAPlayer3
 				this.t進行描画_チップアニメ();
 
                 this.actLaneTaiko.On進行描画();
-                //this.t進行描画_レーン();
-				//this.t進行描画_レーンフラッシュD();
-
+                
                 if( ( TJAPlayer3.ConfigIni.eClipDispType == EClipDispType.ウィンドウのみ || TJAPlayer3.ConfigIni.eClipDispType == EClipDispType.両方 ) && TJAPlayer3.ConfigIni.nPlayerCount == 1 )
                     this.actAVI.t窓表示();
 
@@ -528,13 +520,10 @@ namespace TJAPlayer3
 
                 this.actLaneTaiko.ゴーゴー炎();
 
-                // bIsFinishedPlaying was dependent on 2P in this case
-
-                
+                // bIsFinishedPlaying was dependent on 2P in this case                
 
                 for ( int i = 0; i < TJAPlayer3.ConfigIni.nPlayerCount; i++ )
-                {
-                    // bIsFinishedPlaying = this.t進行描画_チップ(E楽器パート.DRUMS, i);
+                {                    
                     bool btmp = this.t進行描画_チップ(E楽器パート.DRUMS, i);
                     if (btmp == true)
                         ifp[i] = true;
@@ -2355,25 +2344,6 @@ namespace TJAPlayer3
             }
 
             #endregion
-
-            //string strNull = "Found";
-
-            if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F1))
-            {
-                if (!this.actPauseMenu.bIsActivePopupMenu && this.bPAUSE == false)
-                {
-                    TJAPlayer3.Skin.sound変更音.t再生する();
-
-                    CSound管理.rc演奏用タイマ.t一時停止();
-                    TJAPlayer3.Timer.t一時停止();
-                    TJAPlayer3.DTX.t全チップの再生一時停止();
-                    this.actAVI.tPauseControl();
-
-                    this.bPAUSE = true;
-                    this.actPauseMenu.tActivatePopupMenu(0);
-                }
-
-            }
 
         }
 

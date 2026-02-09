@@ -282,6 +282,8 @@ namespace TJAPlayer3
 
                 int cp1 = nOptionCount + 1;
 
+                //henryk
+                //maybe this is up and down for changing game options at diff select
                 if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.UpArrow)) {
                     TJAPlayer3.Skin.sound変更音.t再生する();
                     NowCount = (NowCount + cp1 - 1) % cp1;
@@ -741,8 +743,7 @@ namespace TJAPlayer3
         {
             float factor = 1f;
             int actual = TJAPlayer3.GetActualPlayer(player);
-
-            //factor *= tGetScrollSpeedFactor(ebt, isMenu, actual);
+            
             factor *= tGetSongSpeedFactor(ebt, isMenu, actual);
             factor *= tGetJustFactor(ebt, isMenu, actual);
             factor *= tGetTimingFactor(ebt, isMenu, actual);

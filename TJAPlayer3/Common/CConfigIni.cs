@@ -1016,7 +1016,6 @@ namespace TJAPlayer3
 		public STAUTOPLAY bAutoPlay;
 		public int nSoundDeviceType;				// #24820 2012.12.23 yyagi 出力サウンドデバイス(0=ACM(にしたいが設計がきつそうならDirectShow), 1=ASIO, 2=WASAPI)
 		public int nWASAPIBufferSizeMs;				// #24820 2013.1.15 yyagi WASAPIのバッファサイズ
-//		public int nASIOBufferSizeMs;				// #24820 2012.12.28 yyagi ASIOのバッファサイズ
 		public int nASIODevice;						// #24820 2013.1.17 yyagi ASIOデバイス
 		public bool bUseOSTimer;					// #33689 2014.6.6 yyagi 演奏タイマーの種類
 		public bool bDynamicBassMixerManagement;	// #24820
@@ -1028,8 +1027,7 @@ namespace TJAPlayer3
 		public bool bViewerVSyncWait;
 		public bool bViewerShowDebugStatus;
 		public bool bViewerTimeStretch;
-		public bool bViewerDrums有効, bViewerGuitar有効;
-		//public bool bNoMP3Streaming;				// 2014.4.14 yyagi; mp3のシーク位置がおかしくなる場合は、これをtrueにすることで、wavにデコードしてからオンメモリ再生する
+		public bool bViewerDrums有効, bViewerGuitar有効;		
 		public int nMasterVolume;
         public bool ShinuchiMode; // 真打モード
         public bool FastRender; // 事前画像描画モード
@@ -1491,7 +1489,10 @@ namespace TJAPlayer3
 			this.bLeft = new STDGBVALUE<bool>();
 			this.e判定位置 = new STDGBVALUE<E判定位置>();		// #33891 2014.6.26 yyagi
 			this.判定文字表示位置 = new STDGBVALUE<E判定文字表示位置>();
-			this.nScrollSpeed = new int[4] { 9, 9, 9, 9 };
+			
+			//henryk
+			//hardcode default scroll speed to "7"
+			this.nScrollSpeed = new int[4] { 7, 9, 9, 9 };
 			this.nTimingZones = new int[4] { 2, 2, 2, 2 };
 			this.nGameType = new EGameType[4] { EGameType.TAIKO, EGameType.TAIKO, EGameType.TAIKO, EGameType.TAIKO };
 			this.nFunMods = new EFunMods[4] { EFunMods.NONE, EFunMods.NONE, EFunMods.NONE, EFunMods.NONE };
@@ -1508,18 +1509,14 @@ namespace TJAPlayer3
 				this.bLeft[ i ] = false;
 				this.判定文字表示位置[ i ] = E判定文字表示位置.レーン上;
 				this.nJudgeLinePosOffset[ i ] = 0;
-				this.eInvisible[ i ] = EInvisible.OFF;
-				//this.nViewerScrollSpeed[ i ] = 1;
-				this.e判定位置[ i ] = E判定位置.標準;
-				//this.e判定表示優先度[ i ] = E判定表示優先度.Chipより下;
+				this.eInvisible[ i ] = EInvisible.OFF;				
+				this.e判定位置[ i ] = E判定位置.標準;				
 			}
 
 
 			for (int i = 0; i < 4; i++)
             {
-				this.eRandom[i] = Eランダムモード.OFF;
-				this.nScrollSpeed[i] = 9;
-				this.nTimingZones[i] = 2;
+				this.eRandom[i] = Eランダムモード.OFF;				
 			} 
 
 			this.n演奏速度 = 20;
@@ -3234,21 +3231,7 @@ namespace TJAPlayer3
 									#region [ [ViewerOption] ]
 									//-----------------------------
 									case Eセクション種別.ViewerOption:
-										{
-											/*
-											if ( str3.Equals( "ViewerDrumsScrollSpeed" ) )
-											{
-												this.nViewerScrollSpeed.Drums = C変換.n値を文字列から取得して範囲内に丸めて返す( str4, 0, 1999, this.nViewerScrollSpeed.Drums );
-											}
-											else if ( str3.Equals( "ViewerGuitarScrollSpeed" ) )
-											{
-												this.nViewerScrollSpeed.Guitar = C変換.n値を文字列から取得して範囲内に丸めて返す( str4, 0, 1999, this.nViewerScrollSpeed.Guitar );
-											}
-											else if ( str3.Equals( "ViewerBassScrollSpeed" ) )
-											{
-												this.nViewerScrollSpeed.Bass = C変換.n値を文字列から取得して範囲内に丸めて返す( str4, 0, 1999, this.nViewerScrollSpeed.Bass );
-											}
-											*/
+										{											
 											if ( str3.Equals( "ViewerVSyncWait" ) )
 											{
 												this.bViewerVSyncWait = C変換.bONorOFF( str4[ 0 ] );

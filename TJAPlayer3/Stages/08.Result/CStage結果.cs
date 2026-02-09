@@ -1414,6 +1414,7 @@ namespace TJAPlayer3
 						{
 							#region [ Return to song select screen (Faster method) ]
 
+							//this is NOT quick exit from training mode
 							TJAPlayer3.Skin.bgmリザルト音.t停止する();
 							TJAPlayer3.Skin.bgmDanResult.t停止する();
 							TJAPlayer3.Skin.bgmTowerResult.t停止する();

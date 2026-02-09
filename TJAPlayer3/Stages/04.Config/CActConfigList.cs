@@ -1097,17 +1097,13 @@ namespace TJAPlayer3
 				switch ( this.list項目リスト[ nItem ].e種別 )
 				{
 					case CItemBase.E種別.ONorOFFトグル:
-						#region [ *** ]
-						//-----------------
-						//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 210, y + 12, ( (CItemToggle) this.list項目リスト[ nItem ] ).bON ? "ON" : "OFF" );
+						#region [ *** ]												
 						strParam = ( (CItemToggle) this.list項目リスト[ nItem ] ).bON ? "ON" : "OFF";
-						break;
-					//-----------------
+						break;					
 						#endregion
 
 					case CItemBase.E種別.ONorOFFor不定スリーステート:
-						#region [ *** ]
-						//-----------------
+						#region [ *** ]						
 						switch ( ( (CItemThreeState) this.list項目リスト[ nItem ] ).e現在の状態 )
 						{
 							case CItemThreeState.E状態.ON:
@@ -1121,30 +1117,19 @@ namespace TJAPlayer3
 							default:
 								strParam = "OFF";
 								break;
-						}
-						//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 210, y + 12, "ON" );
-						break;
-					//-----------------
+						}						
+						break;					
 						#endregion
 
 					case CItemBase.E種別.整数:		// #24789 2011.4.8 yyagi: add PlaySpeed supports (copied them from OPTION)
-						#region [ *** ]
-						//-----------------
+						#region [ *** ]						
 						if ( this.list項目リスト[ nItem ] == this.iCommonPlaySpeed )
 						{
-							double d = ( (double) ( (CItemInteger) this.list項目リスト[ nItem ] ).n現在の値 ) / 20.0;
-							//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 210, y + 12, d.ToString( "0.000" ), ( n行番号 == 0 ) && this.b要素値にフォーカス中 );
+							double d = ( (double) ( (CItemInteger) this.list項目リスト[ nItem ] ).n現在の値 ) / 20.0;							
 							strParam = d.ToString( "0.000" );
 						}
-						/*else if ( this.list項目リスト[ nItem ] == this.iDrumsScrollSpeed)
-						{
-							float f = ( ( (CItemInteger) this.list項目リスト[ nItem ] ).n現在の値 + 1 ) / 10f;
-							//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 210, y + 12, f.ToString( "x0.0" ), ( n行番号 == 0 ) && this.b要素値にフォーカス中 );
-							strParam = f.ToString( "x0.0" );
-						}*/
 						else
-						{
-							//CDTXMania.stageコンフィグ.actFont.t文字列描画( x + 210, y + 12, ( (CItemInteger) this.list項目リスト[ nItem ] ).n現在の値.ToString(), ( n行番号 == 0 ) && this.b要素値にフォーカス中 );
+						{							
 							strParam = ( (CItemInteger) this.list項目リスト[ nItem ] ).n現在の値.ToString();
 						}
 						b強調 = ( n行番号 == 0 ) && this.b要素値にフォーカス中;
@@ -1527,36 +1512,25 @@ namespace TJAPlayer3
 			TJAPlayer3.ConfigIni.nAILevel = this.iAILevel.n現在の値;
 			for (int i = 0; i < 2; i++)
 				TJAPlayer3.NamePlate.tNamePlateRefreshTitles(i);
-
-			//TJAPlayer3.ConfigIni.nScrollSpeed[TJAPlayer3.SaveFile] = this.iDrumsScrollSpeed.n現在の値;
             
 			TJAPlayer3.ConfigIni.bTight = this.iDrumsTight.bON;
-
-		    //TJAPlayer3.ConfigIni.nInputAdjustTimeMs = this.iInputAdjustTimeMs.n現在の値;
-
+		    
 			TJAPlayer3.ConfigIni.nGlobalOffsetMs = this.iGlobalOffsetMs.n現在の値;
 
 			TJAPlayer3.ConfigIni.n表示可能な最小コンボ数.Drums = this.iSystemMinComboDrums.n現在の値;
 			TJAPlayer3.ConfigIni.nRisky = this.iSystemRisky.n現在の値;						// #23559 2911.7.27 yyagi
-			//CDTXMania.ConfigIni.e判定表示優先度.Drums = (E判定表示優先度) this.iDrumsJudgeDispPriority.n現在選択されている項目番号;
 
             TJAPlayer3.ConfigIni.bBranchGuide = this.iTaikoBranchGuide.bON;
             TJAPlayer3.ConfigIni.nDefaultCourse = this.iTaikoDefaultCourse.n現在選択されている項目番号;
             TJAPlayer3.ConfigIni.nScoreMode = this.iTaikoScoreMode.n現在選択されている項目番号;
             TJAPlayer3.ConfigIni.ShinuchiMode = this.ShinuchiMode.bON;
             TJAPlayer3.ConfigIni.nBranchAnime = this.iTaikoBranchAnime.n現在選択されている項目番号;
-            //CDTXMania.ConfigIni.bHispeedRandom = this.iTaikoHispeedRandom.bON;
             TJAPlayer3.ConfigIni.bNoInfo = this.iTaikoNoInfo.bON;
 
-            //TJAPlayer3.ConfigIni.eRandom.Taiko = (Eランダムモード)this.iTaikoRandom.n現在選択されている項目番号;
-            //TJAPlayer3.ConfigIni.eSTEALTH = (Eステルスモード)this.iTaikoStealth.n現在選択されている項目番号;
-
             TJAPlayer3.ConfigIni.eGameMode = (EGame)this.iTaikoGameMode.n現在選択されている項目番号;
-            //TJAPlayer3.ConfigIni.bJust = this.iTaikoJust.bON;
             TJAPlayer3.ConfigIni.bJudgeCountDisplay = this.iTaikoJudgeCountDisp.bON;
             TJAPlayer3.ConfigIni.b大音符判定 = this.iTaikoBigNotesJudge.bON;
 		}
-		//-----------------
 		#endregion
 	}
 }

@@ -183,21 +183,6 @@ namespace TJAPlayer3
 							return (int)E戻り値.EXIT;
 					}
 
-
-					// Disable F1 keybind since menu is accessible from main menu
-					/*
-					if ((TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.RightShift) || TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftShift)) && TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F1))
-					{
-						TJAPlayer3.Skin.soundEntry.t停止する();
-						
-						n現在の選択行モード選択 = (int)E戻り値.CONFIG - 1;
-
-						this.actFO.tフェードアウト開始();
-						base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-						TJAPlayer3.Skin.sound取消音.t再生する();
-					}
-					*/
-
 					// 1st step (Save file loading)
 					if (!bバナパス読み込み && !bバナパス読み込み失敗)
 					{

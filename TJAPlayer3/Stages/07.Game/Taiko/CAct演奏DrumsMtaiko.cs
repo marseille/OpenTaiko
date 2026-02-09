@@ -81,10 +81,7 @@ namespace TJAPlayer3
 					}
 				}
 				this.nフラッシュ制御タイマ += 20;
-		    }
-
-
-            //this.nHS = TJAPlayer3.ConfigIni.nScrollSpeed.Drums < 8 ? TJAPlayer3.ConfigIni.nScrollSpeed.Drums : 7;
+		    }            
 
             if (TJAPlayer3.stage選曲.n確定された曲の難易度[0] == (int)Difficulty.Dan)  // Dan-i Dojo
                 TJAPlayer3.Tx.Taiko_Background[2]?.t2D描画(TJAPlayer3.app.Device, 0, 184);

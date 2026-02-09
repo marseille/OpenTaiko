@@ -26,29 +26,9 @@ namespace TJAPlayer3
             CSkin skin,
             bool isSongPreview)
         {
-            var isAdjustmentPositive = keyboard.bキーが押された((int)SlimDXKeys.Key.NumberPadPlus);
-            if (!(isAdjustmentPositive || keyboard.bキーが押された((int)SlimDXKeys.Key.NumberPadMinus)))
-            {
-                return;
-            }
+            //henryk 
 
-            ESoundGroup soundGroup;
-            CSkin.Cシステムサウンド システムサウンド = null;
-
-            if (keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftShift) ||
-                keyboard.bキーが押されている((int)SlimDXKeys.Key.RightShift))
-            {
-                soundGroup = ESoundGroup.Voice;
-                システムサウンド = skin.soundゲーム開始音;
-            }
-            else
-            {
-                soundGroup = ESoundGroup.SoundEffect;
-                システムサウンド = skin.sound決定音;
-            }
-
-            soundGroupLevelController.AdjustLevel(soundGroup, isAdjustmentPositive);
-            システムサウンド?.t再生する();
+            //sound effect control I deleted this disable
         }
     }
 }

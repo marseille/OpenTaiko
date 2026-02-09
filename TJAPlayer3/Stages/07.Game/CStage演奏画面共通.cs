@@ -232,24 +232,13 @@ namespace TJAPlayer3
 			cInvisibleChip = new CInvisibleChip( TJAPlayer3.ConfigIni.nDisplayTimesMs, TJAPlayer3.ConfigIni.nFadeoutTimeMs );
 			this.演奏判定ライン座標 = new C演奏判定ライン座標共通();
 			for ( int k = 0; k < 4; k++ )
-			{
-				//for ( int n = 0; n < 5; n++ )
-				//{
-					this.nヒット数_Auto含まない[ k ] = new CHITCOUNTOFRANK();
-					this.nヒット数_Auto含む[ k ] = new CHITCOUNTOFRANK();
-				//}
+			{			
+				this.nヒット数_Auto含まない[ k ] = new CHITCOUNTOFRANK();
+				this.nヒット数_Auto含む[ k ] = new CHITCOUNTOFRANK();
 				this.queWailing[ k ] = new Queue<CDTX.CChip>();
 				this.r現在の歓声Chip[ k ] = null;
 				cInvisibleChip.eInvisibleMode[ k ] = TJAPlayer3.ConfigIni.eInvisible[ k ];
 
-                /*
-				if ( TJAPlayer3.DTXVmode.Enabled )
-				{
-					TJAPlayer3.ConfigIni.nScrollSpeed[ k ] = TJAPlayer3.ConfigIni.nViewerScrollSpeed[ k ];
-				}
-                */
-
-				//this.nJudgeLinePosY_delta[ k ] = CDTXMania.ConfigIni.nJudgeLinePosOffset[ k ];		// #31602 2013.6.23 yyagi
 
 				this.演奏判定ライン座標.n判定位置[ k ] = TJAPlayer3.ConfigIni.e判定位置[ k ];
 				this.演奏判定ライン座標.nJudgeLinePosY_delta[ k ] = TJAPlayer3.ConfigIni.nJudgeLinePosOffset[ k ];
@@ -2626,24 +2615,7 @@ namespace TJAPlayer3
 			}
 			
 			return false;
-		}
-
-		protected void ChangeInputAdjustTimeInPlaying( IInputDevice keyboard, int plusminus )		// #23580 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
-		{
-			int offset;
-			if (keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftControl) ||
-				keyboard.bキーが押されている((int)SlimDXKeys.Key.RightControl))
-			{
-				offset = plusminus;
-			}
-			else
-			{
-				offset = plusminus * 10;
-			}
-
-		    var newInputAdjustTimeMs = (TJAPlayer3.ConfigIni.nInputAdjustTimeMs + offset).Clamp(-99, 99);
-			TJAPlayer3.ConfigIni.nInputAdjustTimeMs = newInputAdjustTimeMs;
-		}
+		}		
 
 		protected abstract void t入力処理_ドラム();
 		protected abstract void ドラムスクロール速度アップ();
@@ -2651,55 +2623,13 @@ namespace TJAPlayer3
 		protected void tキー入力()
 		{
             // Inputs 
-
 			IInputDevice keyboard = TJAPlayer3.Input管理.Keyboard;
 
 			if ( ( !this.bPAUSE && ( base.eフェーズID != CStage.Eフェーズ.演奏_STAGE_FAILED ) ) && ( base.eフェーズID != CStage.Eフェーズ.演奏_STAGE_FAILED_フェードアウト ) )
 			{
 				this.t入力処理_ドラム();
 
-
-                // Individual offset
-				if (keyboard.bキーが押された( (int)SlimDXKeys.Key.UpArrow ) && ( keyboard.bキーが押されている( (int)SlimDXKeys.Key.RightShift ) || keyboard.bキーが押されている( (int)SlimDXKeys.Key.LeftShift ) ) )
-				{	// shift (+ctrl) + UpArrow (BGMAdjust)
-					TJAPlayer3.DTX.t各自動再生音チップの再生時刻を変更する( ( keyboard.bキーが押されている( (int)SlimDXKeys.Key.LeftControl ) || keyboard.bキーが押されている( (int)SlimDXKeys.Key.RightControl ) ) ? 1 : 10 );
-					TJAPlayer3.DTX.tWave再生位置自動補正();
-				}
-				else if (keyboard.bキーが押された( (int)SlimDXKeys.Key.DownArrow ) && ( keyboard.bキーが押されている( (int)SlimDXKeys.Key.RightShift ) || keyboard.bキーが押されている( (int)SlimDXKeys.Key.LeftShift ) ) )
-				{	// shift + DownArrow (BGMAdjust)
-					TJAPlayer3.DTX.t各自動再生音チップの再生時刻を変更する( ( keyboard.bキーが押されている( (int)SlimDXKeys.Key.LeftControl ) || keyboard.bキーが押されている( (int)SlimDXKeys.Key.RightControl ) ) ? -1 : -10 );
-					TJAPlayer3.DTX.tWave再生位置自動補正();
-				}
-                // Tokkun only
-                else if (TJAPlayer3.ConfigIni.bTokkunMode && 
-                    keyboard.bキーが押された( (int)SlimDXKeys.Key.UpArrow ) )
-				{	// UpArrow(scrollspeed up)
-					ドラムスクロール速度アップ();
-				}
-				else if (TJAPlayer3.ConfigIni.bTokkunMode && 
-                    keyboard.bキーが押された( (int)SlimDXKeys.Key.DownArrow ) )
-				{	// DownArrow (scrollspeed down)
-					ドラムスクロール速度ダウン();
-				}
-                // Debug mode
-				else if (keyboard.bキーが押された( (int)SlimDXKeys.Key.Delete ) )
-				{	// del (debug info)
-					TJAPlayer3.ConfigIni.b演奏情報を表示する = !TJAPlayer3.ConfigIni.b演奏情報を表示する;
-				}
-
-                
-                /*
-				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.LeftArrow ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
-				{
-					ChangeInputAdjustTimeInPlaying( keyboard, -1 );
-				}
-				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.RightArrow ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
-				{
-					ChangeInputAdjustTimeInPlaying( keyboard, +1 );
-				}
-                */
-                
-				else if ( ( base.eフェーズID == CStage.Eフェーズ.共通_通常状態 ) && ( keyboard.bキーが押された( (int)SlimDXKeys.Key.Escape ) || TJAPlayer3.Pad.b押されたGB( Eパッド.FT ) ) && !this.actPauseMenu.bIsActivePopupMenu )
+                if ( ( base.eフェーズID == CStage.Eフェーズ.共通_通常状態 ) && ( keyboard.bキーが押された( (int)SlimDXKeys.Key.Escape ) || TJAPlayer3.Pad.b押されたGB( Eパッド.FT ) ) && !this.actPauseMenu.bIsActivePopupMenu )
 				{	// escape (exit)
                     if (!this.actPauseMenu.bIsActivePopupMenu && this.bPAUSE == false)
                     {
@@ -2712,120 +2642,10 @@ namespace TJAPlayer3
 
                         this.bPAUSE = true;
                         this.actPauseMenu.tActivatePopupMenu(0);
-                    }
-                    // this.t演奏中止();
-				}
-                else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.D1 ) )
-                {
-                    if (!TJAPlayer3.DTX.bHasBranch[TJAPlayer3.stage選曲.n確定された曲の難易度[0]]) return;
+                    }                    
+				}                
 
-                    //listBRANCHを廃止したため強制分岐の開始値を
-                    //rc演奏用タイマ.n現在時刻msから引っ張ることに
-
-                    //判定枠に一番近いチップの情報を元に一小節分の値を計算する. 2020.04.21 akasoko26
-
-                    var p判定枠に最も近いチップ = r指定時刻に一番近い未ヒットChipを過去方向優先で検索する((long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 0);
-                    double db一小節後 = 0.0;
-                    if (p判定枠に最も近いチップ != null)
-                        db一小節後 = ((15000.0 / p判定枠に最も近いチップ.dbBPM * (p判定枠に最も近いチップ.fNow_Measure_s / p判定枠に最も近いチップ.fNow_Measure_m)) * 16.0);
-
-                    this.t分岐処理(CDTX.ECourse.eNormal, 0, (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)) + db一小節後);
-
-                    TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.t分岐レイヤー_コース変化(TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.stBranch[0].nAfter, CDTX.ECourse.eNormal, 0);
-                    TJAPlayer3.stage演奏ドラム画面.actMtaiko.tBranchEvent(TJAPlayer3.stage演奏ドラム画面.actMtaiko.After[0], CDTX.ECourse.eNormal, 0);
-                    
-                    this.n現在のコース[0] = CDTX.ECourse.eNormal;
-                    this.n次回のコース[0] = CDTX.ECourse.eNormal;
-                    this.nレーン用表示コース[0] = CDTX.ECourse.eNormal;
-                    
-
-                    this.b強制的に分岐させた[0] = true;
-                }
-                else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.D2 ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
-                {
-                    if (!TJAPlayer3.DTX.bHasBranch[TJAPlayer3.stage選曲.n確定された曲の難易度[0]]) return;
-
-                    //listBRANCHを廃止したため強制分岐の開始値を
-                    //rc演奏用タイマ.n現在時刻msから引っ張ることに
-
-                    //判定枠に一番近いチップの情報を元に一小節分の値を計算する. 2020.04.21 akasoko26
-                    var p判定枠に最も近いチップ = r指定時刻に一番近い未ヒットChipを過去方向優先で検索する((long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 0);
-
-                    double db一小節後 = 0.0;
-                    if (p判定枠に最も近いチップ != null)
-                        db一小節後 = ((15000.0 / p判定枠に最も近いチップ.dbBPM * (p判定枠に最も近いチップ.fNow_Measure_s / p判定枠に最も近いチップ.fNow_Measure_m)) * 16.0);
-
-                    this.t分岐処理(CDTX.ECourse.eExpert, 0, (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)) + db一小節後);
-
-                    TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.t分岐レイヤー_コース変化(TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.stBranch[0].nAfter, CDTX.ECourse.eExpert, 0);
-                    TJAPlayer3.stage演奏ドラム画面.actMtaiko.tBranchEvent(TJAPlayer3.stage演奏ドラム画面.actMtaiko.After[0], CDTX.ECourse.eExpert, 0);
-
-
-                    this.n現在のコース[0] = CDTX.ECourse.eExpert;
-                    this.n次回のコース[0] = CDTX.ECourse.eExpert;
-                    this.nレーン用表示コース[0] = CDTX.ECourse.eExpert;
-
-                    this.b強制的に分岐させた[0] = true;
-                }
-                else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.D3 ) )		// #24243 2011.1.16 yyagi UI for InputAdjustTime in playing screen.
-                {
-                    if (!TJAPlayer3.DTX.bHasBranch[TJAPlayer3.stage選曲.n確定された曲の難易度[0]]) return;
-
-                    //listBRANCHを廃止したため強制分岐の開始値を
-                    //rc演奏用タイマ.n現在時刻msから引っ張ることに
-
-                    //判定枠に一番近いチップの情報を元に一小節分の値を計算する. 2020.04.21 akasoko26
-                    var p判定枠に最も近いチップ = r指定時刻に一番近い未ヒットChipを過去方向優先で検索する((long)(CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)), 0);
-
-                    double db一小節後 = 0.0;
-                    if (p判定枠に最も近いチップ != null)
-                        db一小節後 = ((15000.0 / p判定枠に最も近いチップ.dbBPM * (p判定枠に最も近いチップ.fNow_Measure_s / p判定枠に最も近いチップ.fNow_Measure_m)) * 16.0);
-
-                    this.t分岐処理(CDTX.ECourse.eMaster, 0, (CSound管理.rc演奏用タイマ.n現在時刻 * (((double)TJAPlayer3.ConfigIni.n演奏速度) / 20.0)) + db一小節後);
-
-                    TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.t分岐レイヤー_コース変化(TJAPlayer3.stage演奏ドラム画面.actLaneTaiko.stBranch[0].nAfter, CDTX.ECourse.eMaster, 0);
-                    TJAPlayer3.stage演奏ドラム画面.actMtaiko.tBranchEvent(TJAPlayer3.stage演奏ドラム画面.actMtaiko.After[0], CDTX.ECourse.eMaster, 0);
-
-                    this.n現在のコース[0] = CDTX.ECourse.eMaster;
-                    this.n次回のコース[0] = CDTX.ECourse.eMaster;
-                    this.nレーン用表示コース[0] = CDTX.ECourse.eMaster;
-
-                    this.b強制的に分岐させた[0] = true;
-                }
-
-                TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
-
-                if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F4 ) )
-				{
-                    if( TJAPlayer3.ConfigIni.bJudgeCountDisplay == false )
-                        TJAPlayer3.ConfigIni.bJudgeCountDisplay = true;
-                    else
-                        TJAPlayer3.ConfigIni.bJudgeCountDisplay = false;
-				}
-				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.F5 ) )
-				{
-                    /*
-                    switch( TJAPlayer3.ConfigIni.eClipDispType  )
-                    {
-                        case EClipDispType.OFF:
-                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
-                            break;            
-                        case EClipDispType.ウィンドウのみ:
-                            TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.OFF;
-                    }
-                    */
-                    TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;
-                }
-                if (TJAPlayer3.ConfigIni.bTokkunMode) 
-                {
-                    if (keyboard.bキーが押された((int)SlimDXKeys.Key.F6))
-                    {
-                        if (TJAPlayer3.ConfigIni.b太鼓パートAutoPlay == false)
-                            TJAPlayer3.ConfigIni.b太鼓パートAutoPlay = true;
-                        else
-                            TJAPlayer3.ConfigIni.b太鼓パートAutoPlay = false;
-                    }
-                }
+                TJAPlayer3.ConfigIni.eClipDispType = EClipDispType.ウィンドウのみ;                
             }
 
 #if DEBUG
@@ -2840,19 +2660,7 @@ namespace TJAPlayer3
 #endif
             if ( !this.actPauseMenu.bIsActivePopupMenu && this.bPAUSE && ( ( base.eフェーズID != CStage.Eフェーズ.演奏_STAGE_FAILED ) ) && ( base.eフェーズID != CStage.Eフェーズ.演奏_STAGE_FAILED_フェードアウト ) )
 			{
-				if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.UpArrow ) )
-				{	// UpArrow(scrollspeed up)
-					ドラムスクロール速度アップ();
-				}
-				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.DownArrow ) )
-				{	// DownArrow (scrollspeed down)
-					ドラムスクロール速度ダウン();
-				}
-				else if ( keyboard.bキーが押された( (int)SlimDXKeys.Key.Delete ) )
-				{	// del (debug info)
-					TJAPlayer3.ConfigIni.b演奏情報を表示する = !TJAPlayer3.ConfigIni.b演奏情報を表示する;
-				}
-                else if ((keyboard.bキーが押された((int)SlimDXKeys.Key.Escape)))
+            if ((keyboard.bキーが押された((int)SlimDXKeys.Key.Escape)))
                 {   // escape (exit)
                     CSound管理.rc演奏用タイマ.t再開();
                     TJAPlayer3.Timer.t再開();
@@ -2983,8 +2791,7 @@ namespace TJAPlayer3
             }
 
 			var db現在の譜面スクロール速度 = this.act譜面スクロール速度.db現在の譜面スクロール速度;
-
-			//double speed = 264.0;	// BPM150の時の1小節の長さ[dot]
+			
 			const double speed = 324.0;	// BPM150の時の1小節の長さ[dot]
 
 			double ScrollSpeedDrums = (( db現在の譜面スクロール速度[nPlayer] + 1.0 ) * speed ) * 0.5 * 37.5 / 60000.0;
@@ -3013,18 +2820,12 @@ namespace TJAPlayer3
             if( this.n分岐した回数[ nPlayer ] == 0 )
             {
                 this.bUseBranch[ nPlayer ] = dTX.bHIDDENBRANCH ? false : dTX.bチップがある.Branch;
-            }
+            }            
 
-
-            //CDTXMania.act文字コンソール.tPrint(0, 0, C文字コンソール.Eフォント種別.灰, this.nLoopCount_Clear.ToString()  );
-
-            float? play_bpm_time = null;
-
-            //for ( int nCurrentTopChip = this.n現在のトップChip; nCurrentTopChip < dTX.listChip.Count; nCurrentTopChip++ )
+            float? play_bpm_time = null;            
             for ( int nCurrentTopChip = dTX.listChip.Count - 1; nCurrentTopChip > 0; nCurrentTopChip-- )
 			{
 				CDTX.CChip pChip = dTX.listChip[ nCurrentTopChip ];
-//Debug.WriteLine( "nCurrentTopChip=" + nCurrentTopChip + ", ch=" + pChip.nチャンネル番号.ToString("x2") + ", 発音位置=" + pChip.n発声位置 + ", 発声時刻ms=" + pChip.n発声時刻ms );
 				var time = pChip.n発声時刻ms - n現在時刻ms;
 				pChip.nバーからの距離dot.Drums = (int) ( time * ScrollSpeedDrums );
 				pChip.nバーからの距離dot.Guitar = (int) ( time * ScrollSpeedGuitar );
@@ -4530,9 +4331,7 @@ namespace TJAPlayer3
 				TJAPlayer3.ConfigIni.eInvisible[ i ] = EInvisible.OFF;
 				TJAPlayer3.ConfigIni.eRandom[ i ] = Eランダムモード.OFF;
 				TJAPlayer3.ConfigIni.n表示可能な最小コンボ数[ i ] = 65535;
-				TJAPlayer3.ConfigIni.判定文字表示位置[ i ] = E判定文字表示位置.表示OFF;
-				// CDTXMania.ConfigIni.n譜面スクロール速度[ i ] = CDTXMania.ConfigIni.nViewerScrollSpeed[ i ];	// これだけはOn活性化()で行うこと。
-																												// そうしないと、演奏開始直後にスクロール速度が変化して見苦しい。
+				TJAPlayer3.ConfigIni.判定文字表示位置[ i ] = E判定文字表示位置.表示OFF;				
 			}
 
 			TJAPlayer3.ConfigIni.eDark = Eダークモード.OFF;

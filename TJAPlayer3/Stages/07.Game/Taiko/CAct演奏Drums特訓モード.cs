@@ -158,20 +158,7 @@ namespace TJAPlayer3
 						}
 					}
 				}
-				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.PageDown))
-				{
-					if (this.b特訓PAUSE)
-					{
-						this.n現在の小節線 -= TJAPlayer3.ConfigIni.TokkunSkipMeasures;
-						if (this.n現在の小節線 <= 0)
-							this.n現在の小節線 = 1;
-
-						TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0] = this.n現在の小節線;
-
-						this.t譜面の表示位置を合わせる(true);
-						TJAPlayer3.Skin.sound特訓スクロール音.t再生する();
-					}
-				}
+				
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.RightArrow) || TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RBlue))
 				{
 					if (this.b特訓PAUSE)
@@ -200,43 +187,8 @@ namespace TJAPlayer3
 						}
 
 					}
-				}
-				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.PageUp))
-				{
-					if (this.b特訓PAUSE)
-					{
-						this.n現在の小節線 += TJAPlayer3.ConfigIni.TokkunSkipMeasures;
-						if (this.n現在の小節線 > this.n小節の総数)
-							this.n現在の小節線 = this.n小節の総数;
+				}				
 
-						TJAPlayer3.stage演奏ドラム画面.actPlayInfo.NowMeasure[0] = this.n現在の小節線;
-
-						this.t譜面の表示位置を合わせる(true);
-						TJAPlayer3.Skin.sound特訓スクロール音.t再生する();
-					}
-				}
-				if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.LBlue2P))
-				{
-					if (this.b特訓PAUSE)
-					{
-						if (TJAPlayer3.ConfigIni.n演奏速度 > 6)
-						{
-							TJAPlayer3.ConfigIni.n演奏速度 = TJAPlayer3.ConfigIni.n演奏速度 - 2;
-							this.t譜面の表示位置を合わせる(false);
-						}
-					}
-				}
-				if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RBlue2P))
-				{
-					if (this.b特訓PAUSE)
-					{
-						if (TJAPlayer3.ConfigIni.n演奏速度 < 399)
-						{
-							TJAPlayer3.ConfigIni.n演奏速度 = TJAPlayer3.ConfigIni.n演奏速度 + 2;
-							this.t譜面の表示位置を合わせる(false);
-						}
-					}
-				}
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Home))
 				{
 					if (this.b特訓PAUSE)
@@ -251,6 +203,7 @@ namespace TJAPlayer3
 						}
 					}
 				}
+
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.End))
 				{
 					if (this.b特訓PAUSE)
@@ -264,9 +217,7 @@ namespace TJAPlayer3
 							TJAPlayer3.Skin.sound特訓スクロール音.t再生する();
 						}
 					}
-				}
-				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.A))
-					this.t現在の位置にジャンプポイントを設定する();
+				}				
 
 				if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F5) && (TJAPlayer3.ConfigIni.bTokkunMode == true) && (this.b特訓PAUSE))
 				{

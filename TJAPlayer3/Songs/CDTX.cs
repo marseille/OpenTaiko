@@ -5289,9 +5289,6 @@ namespace TJAPlayer3
 
                 this.listChip.Add(chip);
                 this.n内部番号SCROLL1to++;
-
-                //this.nScoreDiff = Convert.ToInt16( strCommandParam );
-                //tbScoreDiff.Text = strCommandParam;
             }
             else if (strCommandName.Equals("GENRE"))
             {

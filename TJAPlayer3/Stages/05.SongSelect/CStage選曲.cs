@@ -729,31 +729,12 @@ namespace TJAPlayer3
                                     TJAPlayer3.Skin.sound取消音.t再生する();
                                     this.act曲リスト.ctBarFlash.t開始(0, 2700, 1, TJAPlayer3.Timer);
                                     this.act曲リスト.ctBoxOpen.t開始(200, 2700, 1.3f, TJAPlayer3.Timer);
-                                    this.act曲リスト.bBoxClose = true;
-                                    //this.ctDonchan_Select.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+                                    this.act曲リスト.bBoxClose = true;                                    
                                     CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.SELECT);
                                 }
                             }
                         #endregion
-                        #region [ Shift-F1: CONFIG画面 ]
-                        if ((TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.RightShift) || TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftShift)) &&
-                            TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F1))
-                        {   // [SHIFT] + [F1] CONFIG
-                            this.actPresound.tサウンド停止();
-                            this.eフェードアウト完了時の戻り値 = E戻り値.コンフィグ呼び出し;  // #24525 2011.3.16 yyagi: [SHIFT]-[F1]でCONFIG呼び出し
-                            this.actFIFO.tフェードアウト開始();
-                            base.eフェーズID = CStage.Eフェーズ.共通_フェードアウト;
-                            TJAPlayer3.Skin.sound取消音.t再生する();
-                            return 0;
-                        }
-                        #endregion
-                        #region [ F2 簡易オプション ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F2))
-                        {
-                            TJAPlayer3.Skin.sound変更音.t再生する();
-                            this.actQuickConfig.tActivatePopupMenu(E楽器パート.DRUMS);
-                        }
-                        #endregion
+                                                
                         #region [ F3 1PオートON/OFF ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F3))
                         {
@@ -761,43 +742,7 @@ namespace TJAPlayer3
                             C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay);
                         }
                         #endregion
-                        #region [ F4 2PオートON/OFF ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F4))
-                        {
-                            if (TJAPlayer3.ConfigIni.nPlayerCount > 1)
-                            {
-                                TJAPlayer3.Skin.sound変更音.t再生する();
-                                C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.b太鼓パートAutoPlay2P);
-                            }
-                        }
-                        #endregion
-                        #region [ F5 スーパーハード ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F5))
-                        {
-                            TJAPlayer3.Skin.sound変更音.t再生する();
-                            C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.bSuperHard);
-                        }
-                        #endregion
-                        #region [ F6 SCROLL ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F6))
-                        {
-                            TJAPlayer3.Skin.sound変更音.t再生する();
-                            TJAPlayer3.ConfigIni.bスクロールモードを上書き = true;
-                            switch ((int)TJAPlayer3.ConfigIni.eScrollMode)
-                            {
-                                case 0:
-                                    TJAPlayer3.ConfigIni.eScrollMode = EScrollMode.BMSCROLL;
-                                    break;
-                                case 1:
-                                    TJAPlayer3.ConfigIni.eScrollMode = EScrollMode.HBSCROLL;
-                                    break;
-                                case 2:
-                                    TJAPlayer3.ConfigIni.eScrollMode = EScrollMode.Normal;
-                                    TJAPlayer3.ConfigIni.bスクロールモードを上書き = false;
-                                    break;
-                            }
-                        }
-                        #endregion
+                        
                         #region [ F7 TokkunMode ]
                         if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F7))
                         {
@@ -807,19 +752,7 @@ namespace TJAPlayer3
                                 C共通.bToggleBoolian(ref TJAPlayer3.ConfigIni.bTokkunMode);
                             }
                         }
-                        #endregion
-                        /*
-                        #region [ F8 ランダム選曲 ]
-                        if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.F8))
-                        {
-                            if (TJAPlayer3.Skin.sound曲決定音.b読み込み成功)
-                                TJAPlayer3.Skin.sound曲決定音.t再生する();
-                            else
-                                TJAPlayer3.Skin.sound決定音.t再生する();
-                            this.t曲をランダム選択する();
-                        }
-                        #endregion
-                        */
+                        #endregion                        
 
                         if (this.act曲リスト.r現在選択中の曲 != null)
                         {
@@ -860,14 +793,12 @@ namespace TJAPlayer3
                                                             }
                                                         }
                                                         else
-                                                        {
-                                                            // Called here
+                                                        {                                                            
                                                             TJAPlayer3.Skin.sound決定音.t再生する();
                                                             this.act難易度選択画面.bIsDifficltSelect = true;
                                                             this.act難易度選択画面.t選択画面初期化();
                                                             this.act曲リスト.ctBarFlash.t開始(0, 2700, 1, TJAPlayer3.Timer);
-                                                            this.act曲リスト.ctDifficultyIn.t開始(0, 3200, 1, TJAPlayer3.Timer);
-                                                            //this.ctDonchan_Select.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+                                                            this.act曲リスト.ctDifficultyIn.t開始(0, 3200, 1, TJAPlayer3.Timer);                                                            
                                                             CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.SELECT);
                                                         }
                                                     }
@@ -904,8 +835,7 @@ namespace TJAPlayer3
                                                         TJAPlayer3.Skin.sound決定音.t再生する();
                                                         this.act曲リスト.ctBarFlash.t開始(0, 2700, 1, TJAPlayer3.Timer);
                                                         this.act曲リスト.ctBoxOpen.t開始(200, 2700, 1.3f, TJAPlayer3.Timer);
-                                                        this.act曲リスト.bBoxOpen = true;
-                                                        //this.ctDonchan_Select.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+                                                        this.act曲リスト.bBoxOpen = true;                                                        
                                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.SELECT);
                                                     }
                                                     break;
@@ -917,8 +847,7 @@ namespace TJAPlayer3
                                                         TJAPlayer3.Skin.sound取消音.t再生する();
                                                         this.act曲リスト.ctBarFlash.t開始(0, 2700, 1, TJAPlayer3.Timer);
                                                         this.act曲リスト.ctBoxOpen.t開始(200, 2700, 1.3f, TJAPlayer3.Timer);
-                                                        this.act曲リスト.bBoxClose = true;
-                                                        //this.ctDonchan_Select.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
+                                                        this.act曲リスト.bBoxClose = true;                                                        
                                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.SELECT);
                                                     }
                                                     break;
@@ -928,13 +857,6 @@ namespace TJAPlayer3
 
                                                         this.act曲リスト.tMenuContextTrigger(eMenuContext.Random);
                                                         goto Decided;
-
-                                                        /*
-                                                        this.t曲をランダム選択する();
-
-                                                        //this.ctDonchan_Select.t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Select.Length - 1, 1000 / 45, TJAPlayer3.Timer);
-                                                        CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.SELECT);
-                                                        */
                                                     }
                                                     break;
                                             }
@@ -979,8 +901,7 @@ namespace TJAPlayer3
                                 #region [ Up ]
                                 if (!this.bスクロール中)
                                 {
-                                    this.ctキー反復用.Up.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftArrow), new CCounter.DGキー処理(this.tカーソルを上へ移動する));
-                                    //this.ctキー反復用.Up.tキー反復( CDTXMania.Input管理.Keyboard.bキーが押されている( (int) SlimDXKeys.Key.UpArrow ) || CDTXMania.Input管理.Keyboard.bキーが押されている( (int) SlimDXKeys.Key.LeftArrow ), new CCounter.DGキー処理( this.tカーソルを上へ移動する ) );
+                                    this.ctキー反復用.Up.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.LeftArrow), new CCounter.DGキー処理(this.tカーソルを上へ移動する));                                    
                                     if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.LeftChange))
                                     {
                                         this.tカーソルを上へ移動する();
@@ -990,8 +911,6 @@ namespace TJAPlayer3
                                 {
                                     if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.LeftChange))
                                     {
-                                        //this.ctDonchan_Jump[0].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
-                                        //this.ctDonchan_Jump[1].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.START);
 
                                         for (int i = 0; i < 23; i++) tカーソルスキップ(true);
@@ -1002,8 +921,7 @@ namespace TJAPlayer3
                                 #region [ Down ]
                                 if (!this.bスクロール中)
                                 {
-                                    this.ctキー反復用.Down.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.RightArrow), new CCounter.DGキー処理(this.tカーソルを下へ移動する));
-                                    //this.ctキー反復用.Down.tキー反復( CDTXMania.Input管理.Keyboard.bキーが押されている( (int) SlimDXKeys.Key.DownArrow ) || CDTXMania.Input管理.Keyboard.bキーが押されている( (int) SlimDXKeys.Key.RightArrow ), new CCounter.DGキー処理( this.tカーソルを下へ移動する ) );
+                                    this.ctキー反復用.Down.tキー反復(TJAPlayer3.Input管理.Keyboard.bキーが押されている((int)SlimDXKeys.Key.RightArrow), new CCounter.DGキー処理(this.tカーソルを下へ移動する));                                    
                                     
                                     if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RightChange))
                                     {
@@ -1014,8 +932,6 @@ namespace TJAPlayer3
                                 {
                                     if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.RightChange))
                                     {
-                                        //this.ctDonchan_Jump[0].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
-                                        //this.ctDonchan_Jump[1].t開始(0, TJAPlayer3.Tx.SongSelect_Donchan_Jump.Length + 8, 1000 / 45, TJAPlayer3.Timer);
                                         CMenuCharacter.tMenuResetTimer(CMenuCharacter.ECharacterAnimation.START);
 
                                         for (int i = 0; i < 23; i++) tカーソルスキップ(false);
@@ -1035,13 +951,7 @@ namespace TJAPlayer3
                                 this.t選択曲変更通知();
                             }
                             #endregion
-                            #region [ BDx2: 簡易CONFIG ]
-                            if (TJAPlayer3.Input管理.Keyboard.bキーが押された((int)SlimDXKeys.Key.Space))
-                            {
-                                TJAPlayer3.Skin.sound変更音.t再生する();
-                                this.actSortSongs.tActivatePopupMenu(E楽器パート.DRUMS, ref this.act曲リスト);
-                            }
-                            #endregion
+                            
                             #region [ HHx2: 難易度変更 ]
                             if (TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.HH) || TJAPlayer3.Pad.b押された(E楽器パート.DRUMS, Eパッド.HHO))
                             {   // [HH]x2 難易度変更
@@ -1058,12 +968,11 @@ namespace TJAPlayer3
                         }
                     }
 
-
-
-
+                    //I think this handles the + and - key that changes sound effect volume
+                    //commenting it out so I can find it later
                     #region [ Minus & Equals Sound Group Level ]
-                    KeyboardSoundGroupLevelControlHandler.Handle(
-                        TJAPlayer3.Input管理.Keyboard, TJAPlayer3.SoundGroupLevelController, TJAPlayer3.Skin, true);
+//                    KeyboardSoundGroupLevelControlHandler.Handle(
+//                        TJAPlayer3.Input管理.Keyboard, TJAPlayer3.SoundGroupLevelController, TJAPlayer3.Skin, true);
                     #endregion
 
                     this.actSortSongs.t進行描画();
