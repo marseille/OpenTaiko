@@ -458,12 +458,9 @@ namespace TJAPlayer3
 			this.t起動処理();
 		}
 
-		public static string sEncType = "Shift_JIS";
-
-		
+		public static string sEncType = "UTF-8";
 
 		// メソッド
-
 		public void t全画面_ウィンドウモード切り替え()
 		{
 #if WindowedFullscreen
