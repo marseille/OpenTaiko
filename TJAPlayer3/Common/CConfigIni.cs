@@ -2099,7 +2099,7 @@ namespace TJAPlayer3
 			sw.WriteLine( "DrumsTight={0}", this.bTight ? 1 : 0 );
 			sw.WriteLine();
 			sw.WriteLine("; ドラム譜面スクロール速度(0:x0.1, 9:x1.0, 14:x1.5,…,1999:x200.0)");
-			sw.WriteLine("DrumsScrollSpeed1P={0}", this.nScrollSpeed[0] );
+			sw.WriteLine("DrumsScrollSpeed1P={0}", 7);
 			sw.WriteLine("DrumsScrollSpeed2P={0}", this.nScrollSpeed[1]);
 			sw.WriteLine("DrumsScrollSpeed3P={0}", this.nScrollSpeed[2]);
 			sw.WriteLine("DrumsScrollSpeed4P={0}", this.nScrollSpeed[3]);
